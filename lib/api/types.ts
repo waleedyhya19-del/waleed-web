@@ -256,6 +256,10 @@ export interface ConfirmEmail {
   email: string;
 }
 
+export interface ResendConfirmation {
+  email: string;
+}
+
 export interface ChangePassword {
   currentPassword: string;
   newPassword: string;

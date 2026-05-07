@@ -8,6 +8,7 @@ import {
   PasswordReset,
   ChangePassword,
   ConfirmEmail,
+  ResendConfirmation,
   MessageResponse,
   User,
 } from './types';
@@ -49,6 +50,16 @@ export const authApi = {
       '/auth/confirm-email',
       data,
       { skipAuthRefresh: true }
+    );
+  },
+
+  async resendConfirmation(
+    data: ResendConfirmation,
+  ): Promise<ApiResponse<MessageResponse>> {
+    return apiClient.post<ApiResponse<MessageResponse>>(
+      '/auth/resend-confirmation',
+      data,
+      { skipAuthRefresh: true },
     );
   },
 

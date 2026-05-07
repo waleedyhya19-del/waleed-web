@@ -14,7 +14,21 @@ import {
 } from '@/lib/auth/token';
 import { getRuntimeLocale } from '@/lib/i18n/runtime-locale';
 
-const BASE_URL = process.env.NEXT_PUBLIC_API_URL || '/api/v1';
+function normalizeBaseUrl(rawBaseUrl: string): string {
+  const trimmed = rawBaseUrl.replace(/\/+$/, '');
+  if (/\/api\/v\d+$/.test(trimmed)) {
+    return trimmed;
+  }
+  if (typeof window !== 'undefined') {
+    console.warn(
+      `[api/client] NEXT_PUBLIC_API_URL "${rawBaseUrl}" is missing the /api/v\\d+ segment. ` +
+        `Falling back to "${trimmed}/api/v1". Set NEXT_PUBLIC_API_URL=https://<host>/api/v1.`,
+    );
+  }
+  return `${trimmed}/api/v1`;
+}
+
+const BASE_URL = normalizeBaseUrl(process.env.NEXT_PUBLIC_API_URL || '/api/v1');
 const REFRESH_ENDPOINT = '/auth/refresh';
 let refreshRequest: Promise<boolean> | null = null;
 

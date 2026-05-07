@@ -41,7 +41,12 @@ export const changePasswordSchema = z
     path: ['confirmPassword'],
   });
 
+export const resendConfirmationSchema = z.object({
+  email: z.string().email('validation.email.invalid'),
+});
+
 export type LoginInput = z.infer<typeof loginSchema>;
 export type ForgotPasswordInput = z.infer<typeof forgotPasswordSchema>;
 export type ResetPasswordInput = z.infer<typeof resetPasswordSchema>;
 export type ChangePasswordInput = z.infer<typeof changePasswordSchema>;
+export type ResendConfirmationInput = z.infer<typeof resendConfirmationSchema>;

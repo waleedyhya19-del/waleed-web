@@ -75,7 +75,22 @@
     "confirmEmailSuccess": "تم تأكيد البريد الإلكتروني بنجاح",
     "confirmEmailSuccessDesc": "أصبح حسابك جاهزًا. يمكنك تسجيل الدخول الآن.",
     "confirmEmailError": "تعذّر تأكيد بريدك الإلكتروني",
-    "invalidConfirmLink": "رابط التأكيد غير صالح أو مفقود. يرجى طلب رابط جديد أو التواصل مع الدعم."
+    "invalidConfirmLink": "رابط التأكيد غير صالح أو مفقود. يرجى طلب رابط جديد أو التواصل مع الدعم.",
+    "resendConfirmation": "إعادة إرسال التأكيد",
+    "resendConfirmationTitle": "إعادة إرسال بريد التأكيد",
+    "resendConfirmationDesc": "أدخل البريد الإلكتروني المرتبط بحسابك وسنرسل لك رابط تأكيد جديدًا إذا كان بريدك ما زال غير مؤكد.",
+    "resendConfirmationSubmit": "إرسال بريد التأكيد",
+    "resendConfirmationSent": "إذا كان البريد غير مؤكد، فقد أُرسل رابط تأكيد جديد. يرجى مراجعة بريدك الوارد.",
+    "resendConfirmationCta": "إعادة إرسال بريد التأكيد",
+    "emailNotVerified": "يرجى تأكيد بريدك الإلكتروني قبل تسجيل الدخول.",
+    "sendAnotherEmail": "إرسال بريد آخر",
+    "passwordRuleLength": "8 أحرف على الأقل",
+    "passwordRuleUppercase": "حرف كبير واحد على الأقل",
+    "passwordRuleLowercase": "حرف صغير واحد على الأقل",
+    "passwordRuleNumber": "رقم واحد على الأقل",
+    "passwordRuleMatch": "كلمتا المرور متطابقتان",
+    "showPassword": "إظهار كلمة المرور",
+    "hidePassword": "إخفاء كلمة المرور"
   },
   "validation": {
     "email": {

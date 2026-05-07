@@ -75,7 +75,22 @@
     "confirmEmailSuccess": "Email confirmed successfully",
     "confirmEmailSuccessDesc": "Your account is ready. You can sign in now.",
     "confirmEmailError": "We couldn't confirm your email",
-    "invalidConfirmLink": "Invalid or missing confirmation link. Please request a new one or contact support."
+    "invalidConfirmLink": "Invalid or missing confirmation link. Please request a new one or contact support.",
+    "resendConfirmation": "Resend Confirmation",
+    "resendConfirmationTitle": "Resend Confirmation Email",
+    "resendConfirmationDesc": "Enter the email associated with your account and we will send you a new confirmation link if your email is still unverified.",
+    "resendConfirmationSubmit": "Send confirmation email",
+    "resendConfirmationSent": "If the email is unverified, a new confirmation link has been sent. Please check your inbox.",
+    "resendConfirmationCta": "Resend confirmation email",
+    "emailNotVerified": "Please confirm your email before signing in.",
+    "sendAnotherEmail": "Send another email",
+    "passwordRuleLength": "At least 8 characters",
+    "passwordRuleUppercase": "One uppercase letter",
+    "passwordRuleLowercase": "One lowercase letter",
+    "passwordRuleNumber": "One number",
+    "passwordRuleMatch": "Passwords match",
+    "showPassword": "Show password",
+    "hidePassword": "Hide password"
   },
   "validation": {
     "email": {

@@ -45,8 +45,13 @@ export function ConfirmEmailForm() {
 
   if (status === 'invalid') {
     return (
-      <div className="rounded-[1.5rem] border border-destructive/20 bg-destructive/8 p-4 text-sm text-destructive">
-        {t('auth.invalidConfirmLink')}
+      <div className="space-y-4">
+        <div className="rounded-[1.5rem] border border-destructive/20 bg-destructive/8 p-4 text-sm text-destructive">
+          {t('auth.invalidConfirmLink')}
+        </div>
+        <Button asChild className="h-12 w-full rounded-2xl">
+          <Link href="/resend-confirmation">{t('auth.resendConfirmationCta')}</Link>
+        </Button>
       </div>
     );
   }
@@ -90,6 +95,9 @@ export function ConfirmEmailForm() {
       </div>
       <Button asChild variant="outline" className="h-12 w-full rounded-2xl">
         <Link href="/login">{t('common.back')}</Link>
+      </Button>
+      <Button asChild className="h-12 w-full rounded-2xl">
+        <Link href="/resend-confirmation">{t('auth.resendConfirmationCta')}</Link>
       </Button>
     </div>
   );
