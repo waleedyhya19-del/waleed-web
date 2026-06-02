@@ -21,6 +21,7 @@ export default function LocaleError({
       error,
       fallbackMessage: t('errors.serverError'),
     });
+    console.log(error)
   }, [error, t]);
 
   return (
