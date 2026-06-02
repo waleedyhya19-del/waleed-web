@@ -52,7 +52,10 @@ export function ResetPasswordForm() {
   const onSubmit = async (data: ResetPasswordInput) => {
     setIsLoading(true);
     try {
-      await authApi.resetPassword(data);
+      await authApi.resetPassword({
+        token: data.token,
+        newPassword: data.newPassword,
+      });
       successToast(t('auth.resetPasswordSuccess'));
       router.replace('/login');
     } catch (error) {
