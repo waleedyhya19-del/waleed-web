@@ -31,7 +31,8 @@
     "refresh": "Refresh",
     "retry": "Retry",
     "results": "Results",
-    "all": "All"
+    "all": "All",
+    "goHome": "Go Home"
   },
   "auth": {
     "login": "Sign In",
@@ -335,7 +336,8 @@
     "forbidden": "Forbidden",
     "notFound": "Not Found",
     "validationError": "Validation Error",
-    "unknownError": "Unknown error"
+    "unknownError": "Unknown error",
+    "forbiddenDesc": "You do not have permission to view this page."
   },
   "toast": {
     "error": "Error",

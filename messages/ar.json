@@ -31,7 +31,8 @@
     "refresh": "تحديث",
     "retry": "إعادة المحاولة",
     "results": "النتائج",
-    "all": "الكل"
+    "all": "الكل",
+    "goHome": "الذهاب للرئيسية"
   },
   "auth": {
     "login": "تسجيل الدخول",
@@ -335,7 +336,8 @@
     "forbidden": "ممنوع",
     "notFound": "غير موجود",
     "validationError": "خطأ في التحقق",
-    "unknownError": "خطأ غير معروف"
+    "unknownError": "خطأ غير معروف",
+    "forbiddenDesc": "ليس لديك صلاحية لعرض هذه الصفحة."
   },
   "toast": {
     "error": "خطأ",
