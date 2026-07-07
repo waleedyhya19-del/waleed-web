@@ -1,347 +1,373 @@
 {
-  "navigation": {
-    "dashboard": "لوحة التحكم",
-    "reports": "التقارير",
-    "users": "المستخدمين",
-    "moderators": "المشرفين",
-    "settings": "الإعدادات",
-    "logout": "تسجيل الخروج"
-  },
   "common": {
-    "loading": "جاري التحميل...",
-    "error": "خطأ",
-    "success": "نجاح",
-    "cancel": "إلغاء",
+    "appName": "موبايلي مفقود",
+    "loading": "جاري التحميل…",
     "save": "حفظ",
+    "cancel": "إلغاء",
+    "confirm": "تأكيد",
     "delete": "حذف",
     "edit": "تعديل",
-    "view": "عرض",
     "create": "إنشاء",
+    "update": "تحديث",
     "search": "بحث",
     "filter": "تصفية",
-    "actions": "الإجراءات",
-    "confirm": "تأكيد",
+    "reset": "إعادة تعيين",
+    "close": "إغلاق",
     "back": "رجوع",
     "next": "التالي",
     "previous": "السابق",
-    "noData": "لا توجد بيانات",
-    "noResults": "لا توجد نتائج مطابقة",
-    "required": "مطلوب",
-    "optional": "اختياري",
-    "refresh": "تحديث",
+    "submit": "إرسال",
+    "yes": "نعم",
+    "no": "لا",
+    "unknown": "غير معروف",
     "retry": "إعادة المحاولة",
-    "results": "النتائج",
-    "all": "الكل",
-    "goHome": "الذهاب للرئيسية"
-  },
-  "auth": {
-    "login": "تسجيل الدخول",
-    "logout": "تسجيل الخروج",
+    "signIn": "تسجيل الدخول",
+    "signOut": "تسجيل الخروج",
+    "signUp": "إنشاء حساب",
     "email": "البريد الإلكتروني",
     "password": "كلمة المرور",
-    "forgotPassword": "نسيت كلمة المرور؟",
-    "resetPassword": "إعادة تعيين كلمة المرور",
-    "changePassword": "تغيير كلمة المرور",
+    "confirmPassword": "تأكيد كلمة المرور",
     "currentPassword": "كلمة المرور الحالية",
     "newPassword": "كلمة المرور الجديدة",
-    "confirmPassword": "تأكيد كلمة المرور",
-    "loginButton": "تسجيل الدخول",
-    "loggingIn": "جاري تسجيل الدخول...",
-    "loginSuccess": "تم تسجيل الدخول بنجاح",
-    "loginError": "فشل تسجيل الدخول",
-    "forgotPasswordTitle": "نسيت كلمة المرور؟",
-    "forgotPasswordDesc": "أدخل بريدك الإلكتروني وسنرسل لك رابطًا لإعادة تعيين كلمة المرور.",
-    "resetPasswordSent": "تم إرسال رابط إعادة تعيين كلمة المرور إلى بريدك الإلكتروني",
-    "resetPasswordSuccess": "تمت إعادة تعيين كلمة المرور بنجاح. يرجى تسجيل الدخول.",
-    "invalidResetLink": "رابط إعادة التعيين غير صالح أو مفقود. يرجى طلب رابط جديد.",
-    "resetPasswordTitle": "تعيين كلمة مرور جديدة",
-    "resetPasswordDesc": "أدخل كلمة المرور الجديدة أدناه.",
-    "sessionExpired": "انتهت الجلسة",
-    "sessionExpiredDesc": "انتهت صلاحية جلستك. يرجى تسجيل الدخول مرة أخرى.",
-    "loginAgain": "تسجيل الدخول مرة أخرى",
-    "accountLocked": "تم قفل الحساب",
-    "accountLockedUntil": "تم قفل حسابك حتى {time}",
-    "heroTitle": "تشغيل آمن لكل حالة هاتف مفقود أو مسروق.",
-    "heroDescription": "نسّق مراجعة التقارير والأدلة ومسارات عمل المشرفين من مركز تحكم متجاوب مبني لفرق العمل العربية والإنجليزية.",
-    "heroFeatureOne": "مراجعة تبدأ بالأدلة",
-    "heroFeatureOneDescription": "راجع بيانات IMEI وصاحب الجهاز والصور بدون فقدان سياق الحالة عبر أي جهاز.",
-    "heroFeatureTwo": "وصول محمي",
-    "heroFeatureTwoDescription": "حافظ على ربط كل إجراء بجلسة موثقة مع تجربة دخول أوضح وأسرع.",
-    "heroCardTitle": "ادخل إلى مساحة العمل",
-    "heroCardDescription": "سجّل الدخول لمتابعة التقارير وإدارة المستخدمين ومراقبة التصعيدات في الوقت الحقيقي.",
-    "confirmEmail": "تأكيد البريد الإلكتروني",
-    "confirmEmailTitle": "تأكيد بريدك الإلكتروني",
-    "confirmEmailDesc": "نقوم بالتحقق من بريدك الإلكتروني. عادةً ما يستغرق ذلك لحظات.",
-    "confirmingEmail": "جارٍ التحقق من بريدك الإلكتروني…",
-    "confirmEmailSuccess": "تم تأكيد البريد الإلكتروني بنجاح",
-    "confirmEmailSuccessDesc": "أصبح حسابك جاهزًا. يمكنك تسجيل الدخول الآن.",
-    "confirmEmailError": "تعذّر تأكيد بريدك الإلكتروني",
-    "invalidConfirmLink": "رابط التأكيد غير صالح أو مفقود. يرجى طلب رابط جديد أو التواصل مع الدعم.",
-    "resendConfirmation": "إعادة إرسال التأكيد",
-    "resendConfirmationTitle": "إعادة إرسال بريد التأكيد",
-    "resendConfirmationDesc": "أدخل البريد الإلكتروني المرتبط بحسابك وسنرسل لك رابط تأكيد جديدًا إذا كان بريدك ما زال غير مؤكد.",
-    "resendConfirmationSubmit": "إرسال بريد التأكيد",
-    "resendConfirmationSent": "إذا كان البريد غير مؤكد، فقد أُرسل رابط تأكيد جديد. يرجى مراجعة بريدك الوارد.",
-    "resendConfirmationCta": "إعادة إرسال بريد التأكيد",
-    "emailNotVerified": "يرجى تأكيد بريدك الإلكتروني قبل تسجيل الدخول.",
-    "sendAnotherEmail": "إرسال بريد آخر",
-    "passwordRuleLength": "8 أحرف على الأقل",
-    "passwordRuleUppercase": "حرف كبير واحد على الأقل",
-    "passwordRuleLowercase": "حرف صغير واحد على الأقل",
-    "passwordRuleNumber": "رقم واحد على الأقل",
-    "passwordRuleMatch": "كلمتا المرور متطابقتان",
-    "showPassword": "إظهار كلمة المرور",
-    "hidePassword": "إخفاء كلمة المرور"
-  },
-  "validation": {
-    "email": {
-      "required": "البريد الإلكتروني مطلوب",
-      "invalid": "البريد الإلكتروني غير صالح"
-    },
-    "password": {
-      "required": "كلمة المرور مطلوبة",
-      "minLength": "يجب أن تكون كلمة المرور 8 أحرف على الأقل",
-      "uppercase": "يجب أن تحتوي كلمة المرور على حرف كبير واحد على الأقل",
-      "lowercase": "يجب أن تحتوي كلمة المرور على حرف صغير واحد على الأقل",
-      "number": "يجب أن تحتوي كلمة المرور على رقم واحد على الأقل",
-      "mismatch": "كلمتا المرور غير متطابقتين"
-    },
-    "currentPassword": {
-      "required": "كلمة المرور الحالية مطلوبة"
-    },
-    "displayName": {
-      "required": "الاسم مطلوب",
-      "maxLength": "الاسم لا يمكن أن يتجاوز 100 حرف"
-    },
-    "phone": {
-      "invalid": "رقم الهاتف غير صالح"
-    },
-    "serialNumber": {
-      "invalid": "رقم IMEI يجب أن يكون 15 رقمًا"
-    },
-    "phoneNumber": {
-      "invalid": "رقم الهاتف غير صالح"
-    },
-    "description": {
-      "maxLength": "الوصف لا يمكن أن يتجاوز 2000 حرف"
-    },
-    "role": {
-      "invalid": "الدور غير صالح"
-    },
-    "type": {
-      "invalid": "النوع غير صالح"
-    },
-    "status": {
-      "invalid": "الحالة غير صالحة"
-    },
-    "token": {
-      "required": "الرمز مطلوب"
-    }
-  },
-  "reports": {
-    "title": "التقارير",
-    "myCases": "قضاياي",
-    "myCasesDescription": "التقارير المُسنَدة إليك. راجع الأدلة، حدّث تفاصيل القضية، وحرّكها عبر سير العمل.",
-    "new": "تقرير جديد",
-    "searchPlaceholder": "ابحث برقم IMEI أو الهاتف أو المبلّغ أو رقم التقرير",
-    "directoryDescription": "راجع كل حالة مفتوحة وصفِّها حسب مرحلة العمل وافتح الملف الكامل من واجهة مناسبة للجوال.",
-    "loadError": "تعذر تحميل التقارير حاليًا.",
-    "detail": "تفاصيل التقرير",
-    "detailDescription": "افحص الأدلة المرفوعة وتاريخ الحالة وعناصر التحكم في سير العمل لهذا التقرير.",
-    "newDescription": "أنشئ تقريرًا جديدًا نيابةً عن مستخدم نهائي وأرفق صور الأدلة المطلوبة.",
-    "id": "رقم التقرير",
-    "type": "النوع",
-    "lost": "مفقود",
-    "stolen": "مسروق",
-    "serialNumber": "رقم IMEI",
-    "phoneNumber": "رقم الهاتف",
-    "description": "الوصف",
-    "status": "الحالة",
-    "createdAt": "تاريخ الإنشاء",
-    "updatedAt": "تاريخ التحديث",
-    "photos": "الصور",
-    "user": "المستخدم",
-    "noReports": "لا توجد تقارير",
-    "noReportsDesc": "لم يتم العثور على تقارير",
-    "updateStatus": "تحديث الحالة",
-    "changeWorkflow": "انقل هذا التقرير بين مراحل المراجعة.",
-    "edit": "تعديل التقرير",
-    "delete": "حذف التقرير",
-    "deleteConfirm": "هل أنت متأكد من حذف هذا التقرير؟",
-    "deleteSuccess": "تم حذف التقرير بنجاح",
-    "createSuccess": "تم إنشاء التقرير بنجاح",
-    "updateSuccess": "تم تحديث التقرير بنجاح",
-    "statusHistory": "سجل الحالة",
-    "viewUser": "عرض المستخدم",
-    "evidenceGallery": "معرض الأدلة",
-    "noPhotos": "لا توجد صور أدلة",
-    "noPhotosDesc": "لم يتم رفع أي صور مرفقة لهذا التقرير بعد.",
-    "photoUnavailable": "الصورة غير متاحة",
-    "photoLabel": "الصورة {number}",
-    "assignedUser": "صاحب التقرير",
-    "assignedUserPlaceholder": "اختر مالك التقرير",
-    "photosHint": "ارفع حتى 5 ملفات JPEG أو PNG. يلزم وجود صورة واحدة على الأقل.",
-    "photosRequired": "أضف صورة دليل واحدة على الأقل قبل إنشاء التقرير."
-  },
-  "reportStatus": {
-    "received": "مستلم",
-    "reviewing": "قيد المراجعة",
-    "escalated": "مصعّد",
-    "rejected": "مرفوض",
-    "resolved": "تم الحل",
-    "closed": "مغلق"
-  },
-  "users": {
-    "title": "المستخدمين",
-    "new": "مستخدم جديد",
-    "searchPlaceholder": "ابحث بالاسم أو البريد أو الهاتف",
-    "directoryDescription": "تصفّح حسابات المستخدمين وافحص الهويات وأبقِ أصحاب التقارير قابلين للتواصل عبر الجوال وسطح المكتب.",
-    "loadError": "تعذر تحميل المستخدمين حاليًا.",
-    "detail": "تفاصيل المستخدم",
-    "detailDescription": "اطلع على الملف الشخصي وبيانات التواصل وحالة الحساب لهذا المبلّغ.",
-    "newDescription": "أنشئ حسابًا جديدًا وحدد ما إذا كان سيبدأ كمستخدم نهائي أو مشرف أو مدير.",
-    "name": "الاسم",
-    "email": "البريد الإلكتروني",
+    "displayName": "الاسم الظاهر",
     "phone": "رقم الهاتف",
     "role": "الدور",
-    "createdAt": "تاريخ الإنشاء",
-    "noUsers": "لا يوجد مستخدمين",
-    "noUsersDesc": "لم يتم العثور على مستخدمين",
-    "edit": "تعديل المستخدم",
-    "delete": "حذف المستخدم",
-    "deleteConfirm": "هل أنت متأكد من حذف هذا المستخدم؟",
-    "deleteSuccess": "تم حذف المستخدم بنجاح",
-    "createSuccess": "تم إنشاء المستخدم بنجاح",
-    "updateSuccess": "تم تحديث المستخدم بنجاح",
-    "reports": "التقارير",
-    "viewReports": "عرض التقارير",
-    "cannotDeleteSelf": "لا يمكنك حذف حسابك الخاص",
-    "cannotDeleteLastAdmin": "يجب أن يوجد مشرف واحد على الأقل",
-    "lockedUntil": "مقفل حتى",
-    "notLocked": "غير مقفل"
+    "language": "اللغة",
+    "loadMore": "تحميل المزيد",
+    "empty": "لا يوجد شيء لعرضه",
+    "noResults": "لا توجد نتائج",
+    "actions": "إجراءات",
+    "profilePhoto": "صورة الملف الشخصي",
+    "openMenu": "فتح القائمة",
+    "closeMenu": "إغلاق القائمة",
+    "toggleTheme": "تبديل السمة",
+    "light": "فاتح",
+    "dark": "داكن",
+    "system": "النظام",
+    "settings": "الإعدادات",
+    "profile": "الملف الشخصي",
+    "unsavedChanges": "تغييرات غير محفوظة",
+    "somethingWentWrong": "حدث خطأ ما",
+    "tryAgain": "حاول مرة أخرى"
+  },
+  "nav": {
+    "overview": "نظرة عامة",
+    "reports": "البلاغات",
+    "myReports": "بلاغاتي",
+    "newReport": "بلاغ جديد",
+    "users": "المستخدمون",
+    "moderators": "المشرفون",
+    "lawyers": "المحامون",
+    "announcements": "الإعلانات",
+    "contactInfo": "بيانات التواصل",
+    "serialLookup": "البحث بالرقم التسلسلي",
+    "notifications": "الإشعارات",
+    "settings": "الإعدادات",
+    "profile": "الملف الشخصي",
+    "contact": "تواصل معنا"
+  },
+  "auth": {
+    "loginTitle": "مرحبًا بعودتك",
+    "loginSubtitle": "سجّل الدخول إلى حسابك",
+    "loginEmailPlaceholder": "you@example.com",
+    "loginSubmit": "تسجيل الدخول",
+    "forgotPasswordLink": "هل نسيت كلمة المرور؟",
+    "noAccountYet": "لا تملك حسابًا؟",
+    "signupTitle": "أنشئ حسابك",
+    "signupSubtitle": "بلّغ عن جهازك المفقود أو المسروق وتابعه",
+    "signupSubmit": "إنشاء الحساب",
+    "haveAccount": "لديك حساب بالفعل؟",
+    "orContinueWith": "أو تابع باستخدام",
+    "google": "المتابعة عبر جوجل",
+    "forgotPasswordTitle": "إعادة تعيين كلمة المرور",
+    "forgotPasswordSubtitle": "سنرسل لك رابطًا عبر البريد لإعادة تعيين كلمة المرور",
+    "forgotPasswordSubmit": "إرسال الرابط",
+    "forgotPasswordSent": "تحقق من بريدك للاطلاع على رابط إعادة التعيين.",
+    "resetPasswordTitle": "اختر كلمة مرور جديدة",
+    "resetPasswordSubmit": "تحديث كلمة المرور",
+    "resetPasswordSuccess": "تم تحديث كلمة المرور. يمكنك تسجيل الدخول الآن.",
+    "confirmEmailTitle": "تأكيد البريد الإلكتروني",
+    "confirmEmailSubtitle": "افتح الرابط في بريدك للتأكيد.",
+    "confirmEmailSuccess": "تم تأكيد البريد.",
+    "resendConfirmationTitle": "إعادة إرسال التأكيد",
+    "resendConfirmationSubmit": "إعادة الإرسال",
+    "resendConfirmationSent": "تم إرسال رسالة التأكيد.",
+    "changePasswordTitle": "تغيير كلمة المرور",
+    "changePasswordSubmit": "تغيير كلمة المرور",
+    "setPasswordTitle": "تعيين كلمة مرور",
+    "setPasswordSubtitle": "أضف كلمة مرور إلى حسابك لتتمكن من الدخول بالبريد.",
+    "createPasswordTitle": "إضافة بريد وكلمة مرور",
+    "linkEmailTitle": "ربط بريد إلكتروني",
+    "sessionExpiredTitle": "انتهت الجلسة",
+    "sessionExpiredDescription": "الرجاء تسجيل الدخول مرة أخرى للمتابعة.",
+    "accessDeniedTitle": "الوصول ممنوع",
+    "accessDeniedDescription": "لا تملك صلاحية لعرض هذه الصفحة."
+  },
+  "errors": {
+    "generic": "حدث خطأ ما. حاول مرة أخرى.",
+    "network": "لا يوجد اتصال بالشبكة. تحقّق من الاتصال.",
+    "validation": "الرجاء مراجعة الحقول المميّزة.",
+    "unauthorized": "يجب تسجيل الدخول للمتابعة.",
+    "forbidden": "لا تملك صلاحية هذا الإجراء.",
+    "notFound": "العنصر المطلوب غير موجود.",
+    "conflict": "يوجد سجل مطابق بالفعل.",
+    "rateLimit": "طلبات كثيرة. الرجاء المهل.",
+    "internal": "خطأ في الخادم. نعمل على إصلاحه.",
+    "required": "مطلوب",
+    "invalidEmail": "بريد إلكتروني غير صحيح",
+    "passwordTooShort": "يجب أن تكون كلمة المرور 8 أحرف على الأقل",
+    "passwordsMismatch": "كلمتا المرور غير متطابقتين",
+    "invalidImei": "الرقم التسلسلي يجب أن يكون 15 رقمًا"
+  },
+  "status": {
+    "RECEIVED": "مستلم",
+    "REVIEWING": "قيد المراجعة",
+    "ESCALATED": "تم التصعيد",
+    "REJECTED": "مرفوض",
+    "RESOLVED": "تم الحل",
+    "CLOSED": "مغلق"
   },
   "roles": {
-    "endUser": "مستخدم نهائي",
-    "moderator": "مشرف",
-    "admin": "مدير",
-    "lawyer": "محامٍ"
+    "END_USER": "مستخدم",
+    "MODERATOR": "مشرف",
+    "ADMIN": "مسؤول",
+    "LAWYER": "محامٍ"
+  },
+  "reportType": {
+    "LOST": "مفقود",
+    "STOLEN": "مسروق",
+    "FOUND": "تم العثور عليه",
+    "INTENT_TO_PURCHASE": "نية شراء"
+  },
+  "reportCategory": {
+    "BASIC": "بلاغ عادي",
+    "LAWYER_REQUEST": "طلب محامٍ"
+  },
+  "photoCategory": {
+    "PHONE_BOX": "علبة الهاتف",
+    "PAYMENT_RECEIPT": "إيصال الدفع",
+    "POLICE_REPORT": "محضر الشرطة"
+  },
+  "noteAction": {
+    "ACCEPTED": "قبول",
+    "REJECTED": "رفض"
+  },
+  "wipeState": {
+    "DATA_INTACT": "البيانات سليمة",
+    "WIPED": "تم المسح"
+  },
+  "matchResult": {
+    "NO_MATCH": "لا يوجد تطابق مع أي بلاغ.",
+    "CURRENTLY_REPORTED": "هذا الجهاز مبلَّغ عنه حاليًا.",
+    "HISTORICALLY_REPORTED": "تم الإبلاغ عن هذا الجهاز سابقًا."
+  },
+  "contactType": {
+    "PHONE": "هاتف",
+    "SOCIAL_LINK": "رابط اجتماعي"
+  },
+  "language": {
+    "AR": "العربية",
+    "EN": "الإنجليزية"
+  },
+  "portal": {
+    "welcome": "مرحبًا بعودتك",
+    "greeting": "أهلًا، {name}",
+    "myReportsTitle": "بلاغاتك",
+    "myReportsEmpty": "لم تُنشئ أي بلاغ بعد.",
+    "newReportCta": "إنشاء بلاغ جديد",
+    "announcementsTitle": "الإعلانات",
+    "contactTitle": "تواصل معنا",
+    "serialLookupTitle": "البحث برقم IMEI",
+    "serialLookupSubtitle": "تحقق هل تم الإبلاغ عن هذا الرقم من قبل.",
+    "serialLookupPlaceholder": "أدخل رقم IMEI (15 رقمًا)",
+    "serialLookupSubmit": "بحث",
+    "notificationsTitle": "الإشعارات",
+    "profileTitle": "ملفك الشخصي"
+  },
+  "staff": {
+    "overviewTitle": "نظرة عامة على المنصة",
+    "kpi": {
+      "totalReports": "إجمالي البلاغات",
+      "openReports": "البلاغات المفتوحة",
+      "resolvedReports": "البلاغات المُحلّة",
+      "totalUsers": "إجمالي المستخدمين",
+      "totalModerators": "المشرفون",
+      "totalLawyers": "المحامون"
+    },
+    "recentReports": "أحدث البلاغات"
+  },
+  "reports": {
+    "listTitle": "البلاغات",
+    "queueTitle": "قائمة البلاغات",
+    "createTitle": "إنشاء بلاغ",
+    "detailTitle": "تفاصيل البلاغ",
+    "filters": {
+      "status": "الحالة",
+      "type": "النوع",
+      "category": "الفئة",
+      "assignedTo": "مُسنَد إلى",
+      "assignedToMe": "مسنَد إليّ",
+      "search": "بحث بـ IMEI أو الهاتف",
+      "all": "الكل"
+    },
+    "fields": {
+      "imei1": "IMEI الأساسي",
+      "imei2": "IMEI الثانوي",
+      "phoneBrand": "الماركة",
+      "phoneModel": "الموديل",
+      "lastPhoneNumber1": "آخر رقم هاتف (أساسي)",
+      "lastPhoneNumber2": "آخر رقم هاتف (ثانوي)",
+      "description": "الوصف",
+      "lossDate": "تاريخ الفقد",
+      "lossArea": "منطقة الفقد",
+      "lossAddress": "عنوان الفقد",
+      "reporterFullName": "اسم المُبلِّغ",
+      "witnessFullName": "اسم الشاهد",
+      "witnessLocation": "موقع الشاهد",
+      "contactPhoneNumber": "هاتف التواصل",
+      "paymentPhoneNumber": "هاتف الدفع",
+      "depositAmount": "مبلغ التأمين",
+      "rewardIfDataIntact": "المكافأة إذا كانت البيانات سليمة",
+      "rewardIfWiped": "المكافأة إذا تم المسح",
+      "type": "النوع",
+      "category": "الفئة",
+      "status": "الحالة",
+      "owner": "المالك",
+      "assignee": "المسؤول",
+      "createdAt": "أُنشئ",
+      "updatedAt": "آخر تحديث",
+      "assignedAt": "تاريخ الإسناد"
+    },
+    "photos": {
+      "phoneBoxTitle": "صور علبة الهاتف",
+      "paymentReceiptTitle": "إيصال الدفع",
+      "policeReportTitle": "محضر الشرطة",
+      "addPhoto": "إضافة صورة",
+      "removePhoto": "حذف",
+      "empty": "لا صور في هذه الفئة"
+    },
+    "notes": {
+      "title": "ملاحظات الإشراف",
+      "empty": "لا توجد ملاحظات بعد",
+      "placeholder": "اكتب ملاحظة توضّح القرار (اختياري)",
+      "action": "القرار"
+    },
+    "status": {
+      "transitionTitle": "تحديث الحالة",
+      "toWithNote": "الانتقال إلى {status}",
+      "requireWipeState": "اختر إن كانت بيانات الجهاز سليمة أم تم مسحها.",
+      "invalidTransition": "لا يُسمح بهذا الانتقال."
+    },
+    "assignment": {
+      "title": "الإسناد",
+      "assignedTo": "مسنَد إلى {name}",
+      "unassigned": "غير مسنَد",
+      "assign": "إسناد",
+      "reassign": "إعادة الإسناد",
+      "clear": "إلغاء الإسناد",
+      "bulkTitle": "إسناد جماعي",
+      "bulkPickReports": "اختر بلاغات أولًا"
+    },
+    "rewardAudit": {
+      "title": "سجل تغييرات المكافأة",
+      "empty": "لا توجد تغييرات مسجّلة."
+    },
+    "confirmDeleteTitle": "حذف البلاغ؟",
+    "confirmDeleteBody": "سيتم حذفه بشكل ناعم. يمكن للمسؤول استعادته."
+  },
+  "users": {
+    "listTitle": "المستخدمون",
+    "createTitle": "إنشاء مستخدم",
+    "detailTitle": "تفاصيل المستخدم",
+    "fields": {
+      "email": "البريد الإلكتروني",
+      "phone": "الهاتف",
+      "role": "الدور",
+      "language": "اللغة المفضّلة",
+      "createdAt": "أُنشئ",
+      "isEmailVerified": "بريد مؤكَّد",
+      "hasPassword": "لديه كلمة مرور"
+    }
   },
   "moderators": {
-    "title": "المشرفين",
-    "new": "مشرف جديد",
-    "searchPlaceholder": "ابحث بالاسم أو البريد أو الهاتف",
-    "directoryDescription": "تابع فريق الاستجابة الداخلي من المشرفين والمديرين المسؤولين عن الحالات المصعّدة.",
-    "loadError": "تعذر تحميل بيانات المشرفين حاليًا.",
-    "detail": "تفاصيل المشرف",
-    "detailDescription": "اعرض الملف الداخلي ودور الوصول وبيانات التواصل لهذا العضو.",
-    "newDescription": "أنشئ حساب مشرف جديد لفريق الاستجابة الداخلي.",
-    "name": "الاسم",
-    "email": "البريد الإلكتروني",
-    "phone": "رقم الهاتف",
-    "createdAt": "تاريخ الإنشاء",
-    "noModerators": "لا يوجد مشرفين",
-    "noModeratorsDesc": "لم يتم العثور على مشرفين",
-    "edit": "تعديل المشرف",
-    "delete": "حذف المشرف",
-    "deleteConfirm": "هل أنت متأكد من حذف هذا المشرف؟",
-    "deleteSuccess": "تم حذف المشرف بنجاح",
-    "createSuccess": "تم إنشاء المشرف بنجاح",
-    "temporaryPassword": "كلمة مرور مؤقتة"
+    "listTitle": "المشرفون",
+    "createTitle": "إنشاء مشرف"
   },
-  "dashboard": {
-    "title": "لوحة التحكم",
-    "welcome": "مرحبًا بك",
-    "overviewDescription": "تابع حركة التقارير وسعة الفريق وتقدّم الحالات من نظرة واحدة.",
-    "loadError": "تعذر تحميل بيانات لوحة التحكم حاليًا.",
-    "totalReports": "إجمالي التقارير",
-    "totalUsers": "إجمالي المستخدمين",
-    "totalModerators": "إجمالي المشرفين",
-    "openReports": "التقارير المفتوحة",
-    "openReportsLabel": "{count} تقارير ما زالت تحت المعالجة",
-    "moderatorsLabel": "{count} مشرفين نشطين",
-    "escalatedReports": "التقارير المصعّدة",
-    "escalationHint": "حالات تحتاج تدخلًا عاجلًا من الإدارة",
-    "solvedRate": "نسبة الإنجاز",
-    "resolveHint": "التقارير المغلقة أو المحلولة من إجمالي التقارير",
-    "activityTitle": "نشاط التقارير",
-    "activityDescription": "تدفّق التقارير اليومي خلال آخر أسبوعين باستخدام ApexCharts.",
-    "dailyReports": "التقارير اليومية",
-    "recentReports": "التقارير الأخيرة",
-    "recentActivity": "آخر حركة في الحالات",
-    "recentReportsEmpty": "ستظهر التقارير الجديدة هنا بمجرد بدء الطابور بالحركة.",
-    "viewAll": "عرض الكل"
+  "lawyers": {
+    "listTitle": "المحامون",
+    "createTitle": "إنشاء محامٍ"
+  },
+  "announcements": {
+    "listTitle": "الإعلانات",
+    "createTitle": "إعلان جديد",
+    "fields": {
+      "title": "العنوان",
+      "body": "النص",
+      "isActive": "نشط",
+      "sortOrder": "الترتيب"
+    },
+    "empty": "لا توجد إعلانات بعد."
+  },
+  "contactInfo": {
+    "listTitle": "بيانات التواصل",
+    "createTitle": "إضافة جديدة",
+    "fields": {
+      "type": "النوع",
+      "label": "التسمية",
+      "value": "القيمة",
+      "sortOrder": "الترتيب"
+    },
+    "empty": "لا توجد بيانات تواصل بعد."
+  },
+  "serialLookup": {
+    "title": "بحث عن IMEI",
+    "subtitle": "تحقّق إن كان الرقم مبلَّغًا عنه.",
+    "placeholder": "IMEI مكوَّن من 15 رقمًا",
+    "submit": "بحث",
+    "result": {
+      "NO_MATCH": "لم يُعثر على بلاغ مطابق لهذا الرقم.",
+      "CURRENTLY_REPORTED": "يوجد بلاغ نشط لهذا الرقم.",
+      "HISTORICALLY_REPORTED": "تم الإبلاغ عن هذا الرقم سابقًا."
+    }
+  },
+  "notifications": {
+    "title": "الإشعارات",
+    "empty": "لا توجد إشعارات",
+    "markAllRead": "تعليم الكل كمقروء",
+    "openLatest": "عرض الأحدث"
   },
   "settings": {
     "title": "الإعدادات",
-    "profile": "الملف الشخصي",
-    "language": "اللغة",
-    "theme": "المظهر",
-    "light": "فاتح",
-    "dark": "داكن",
-    "changePassword": "تغيير كلمة المرور",
-    "arabic": "العربية",
-    "english": "English",
-    "updateSuccess": "تم تحديث الإعدادات بنجاح",
-    "displayName": "اسم العرض",
-    "readOnlyEmail": "البريد الإلكتروني (للقراءة فقط)",
-    "profileDescription": "حدّث بيانات الهوية التي تظهر لبقية أعضاء فريق العمل.",
-    "passwordDescription": "غيّر كلمة المرور دوريًا لحماية حسابات المشرفين والمديرين.",
-    "passwordSuccess": "تم تحديث كلمة المرور بنجاح",
-    "pageDescription": "أدر ملفك الشخصي وتفضيلات الأمان من داخل لوحة التحكم.",
-    "loadError": "تعذر تحميل الإعدادات حاليًا."
+    "tabs": {
+      "profile": "الملف الشخصي",
+      "password": "كلمة المرور",
+      "language": "اللغة",
+      "platform": "المنصة"
+    },
+    "profile": {
+      "title": "الملف الشخصي",
+      "updated": "تم تحديث الملف"
+    },
+    "password": {
+      "title": "تغيير كلمة المرور",
+      "updated": "تم تغيير كلمة المرور"
+    },
+    "language": {
+      "title": "اللغة والمنطقة",
+      "updated": "تم حفظ اللغة المفضّلة"
+    },
+    "platform": {
+      "title": "إعدادات المنصة",
+      "defaultLawyerDeposit": "قيمة التأمين الافتراضية للمحامي",
+      "maxReward": "الحد الأقصى للمكافأة",
+      "serialLookupRateLimit": "حد بحث IMEI",
+      "updated": "تم تحديث إعدادات المنصة"
+    }
   },
-  "shell": {
-    "platformName": "موبايلي مفقود",
-    "platformTagline": "تشغيل حالات الهواتف بسرعة أعلى.",
-    "platformDescription": "مساحة أغنى للمشرفين لتتبع التقارير والمستخدمين وقرارات التصعيد عبر كل الشاشات.",
-    "navigation": "التنقل",
-    "securityLabel": "أمان من الأساس",
-    "securityDescription": "اعتمد على جلسات موثقة ومسارات مرتبطة بالأدوار وحالات عمل واضحة.",
-    "liveOperations": "التشغيل الحي",
-    "liveOperationsDescription": "التصعيدات العاجلة وأدلة التقارير وإجراءات المستخدمين في متناولك حتى على الجوال.",
-    "controlCenter": "مركز التحكم",
-    "notifications": "التنبيهات"
-  },
-  "notifications": {
-    "markAllRead": "تحديد الكل مقروء",
-    "empty": "لا توجد تنبيهات بعد",
-    "seeAll": "عرض كل التقارير"
-  },
-  "settings": {
-    "platform": "إعدادات المنصة",
-    "reportWorkflow": "سير عمل التقارير",
-    "defaultLawyerDepositAmount": "مبلغ إيداع المحامي الافتراضي",
-    "depositAmountPlaceholder": "0 = مخفي",
-    "depositAmountHint": "اتركه فارغًا أو 0 لإخفاء إشعار الإيداع من التقارير",
-    "updateSuccess": "تم تحديث الإعدادات بنجاح"
-  },
-  "reports": {
-    "assign": "تعيين",
-    "assignTo": "تعيين إلى...",
-    "assignedTo": "مُسند إلى",
-    "unassigned": "غير مُسند",
-    "bulkAssign": "تعيين المحدد",
-    "confirmBulkAssign": "هل أنت متأكد من تعيين {count} تقارير إلى {assignee}؟",
-    "reportsSelected": "{count} محدد",
-    "clearSelection": "إلغاء التحديد",
-    "bulkAssignSuccess": "تم تعيين التقارير بنجاح",
-    "addPhotos": "إضافة صور",
-    "deletePhoto": "حذف صورة",
-    "confirmDeletePhoto": "هل أنت متأكد من حذف هذه الصورة؟"
-  },
-  "errors": {
-    "networkError": "خطأ في الشبكة. يرجى المحاولة مرة أخرى.",
-    "serverError": "خطأ في الخادم. يرجى المحاولة مرة أخرى لاحقًا.",
-    "unauthorized": "غير مصرح",
-    "forbidden": "ممنوع",
-    "notFound": "غير موجود",
-    "validationError": "خطأ في التحقق",
-    "unknownError": "خطأ غير معروف",
-    "forbiddenDesc": "ليس لديك صلاحية لعرض هذه الصفحة."
-  },
-  "toast": {
-    "error": "خطأ",
-    "success": "نجاح",
-    "loading": "جاري..."
+  "landing": {
+    "signIn": "تسجيل الدخول",
+    "signUp": "ابدأ الآن",
+    "heroTitle": "بلّغ عن الهواتف المفقودة أو المسروقة. استعدها أسرع.",
+    "heroSubtitle": "منصّة موحّدة يثق بها الملّاك والمشرفون والمسؤولون والمحامون."
   }
 }

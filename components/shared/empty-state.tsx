@@ -1,26 +1,24 @@
-'use client';
+import type { ReactNode } from 'react';
+import { Inbox } from 'lucide-react';
 
-import { ReactNode } from 'react';
-import { FileX } from 'lucide-react';
-
-interface EmptyStateProps {
-  icon?: ReactNode;
-  title?: string;
-  description?: string;
+interface Props {
+  title: ReactNode;
+  description?: ReactNode;
   action?: ReactNode;
+  icon?: ReactNode;
 }
 
-export function EmptyState({ icon, title, description, action }: EmptyStateProps) {
+export function EmptyState({ title, description, action, icon }: Props) {
   return (
-    <div className="surface-card-muted flex flex-col items-center justify-center rounded-[1.75rem] py-12 text-center">
-      {icon || <FileX className="mb-4 size-12 text-muted-foreground/60" />}
-      {title && <h3 className="mb-2 text-lg font-medium">{title}</h3>}
+    <div className="surface-card flex flex-col items-center justify-center gap-3 px-6 py-14 text-center">
+      <div className="rounded-full bg-muted p-3 text-muted-foreground">
+        {icon ?? <Inbox className="h-5 w-5" />}
+      </div>
+      <div className="text-base font-medium text-foreground">{title}</div>
       {description && (
-        <p className="mb-4 max-w-md text-sm leading-7 text-muted-foreground">
-          {description}
-        </p>
+        <div className="max-w-sm text-sm text-muted-foreground">{description}</div>
       )}
-      {action}
+      {action && <div className="mt-2">{action}</div>}
     </div>
   );
 }

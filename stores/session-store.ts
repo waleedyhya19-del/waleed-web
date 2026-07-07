@@ -1,66 +1,40 @@
 'use client';
 
 import { create } from 'zustand';
-import { createJSONStorage, persist } from 'zustand/middleware';
+import type { User } from '@/lib/api/types';
+import { tokenStorage } from '@/lib/auth/token-storage';
 
-import { User } from '@/lib/api/types';
+export type SessionStatus = 'idle' | 'loading' | 'authed' | 'guest' | 'expired';
 
-type SessionStoreState = {
+interface SessionState {
   user: User | null;
-  isLoading: boolean;
-  sessionError: unknown;
-  lastValidatedAt: number | null;
-  setLoading: (isLoading: boolean) => void;
-  setSessionError: (sessionError: unknown) => void;
-  setUser: (
-    user: User | null | ((current: User | null) => User | null)
-  ) => void;
-  markValidated: () => void;
-  clearSession: () => void;
-};
+  status: SessionStatus;
+  lastFetchedAt: number | null;
+  setUser: (user: User | null) => void;
+  setStatus: (status: SessionStatus) => void;
+  markFresh: () => void;
+  reset: () => void;
+}
 
-export const SESSION_CACHE_TTL_MS = 60_000;
+const SESSION_TTL_MS = 60_000;
 
-export const useSessionStore = create<SessionStoreState>()(
-  persist(
-    (set) => ({
-      user: null,
-      isLoading: true,
-      sessionError: null,
-      lastValidatedAt: null,
-      setLoading: (isLoading) => set({ isLoading }),
-      setSessionError: (sessionError) => set({ sessionError }),
-      setUser: (user) =>
-        set((state) => ({
-          user:
-            typeof user === 'function'
-              ? user(state.user)
-              : user,
-        })),
-      markValidated: () => set({ lastValidatedAt: Date.now() }),
-      clearSession: () =>
-        set({
-          user: null,
-          isLoading: false,
-          sessionError: null,
-          lastValidatedAt: null,
-        }),
-    }),
-    {
-      name: 'mobili-mafqud-session',
-      storage: createJSONStorage(() => localStorage),
-      partialize: (state) => ({
-        user: state.user,
-        lastValidatedAt: state.lastValidatedAt,
-      }),
-    }
-  )
-);
+export const useSessionStore = create<SessionState>((set) => ({
+  user: null,
+  status: 'idle',
+  lastFetchedAt: null,
+  setUser: (user) => set({ user, status: user ? 'authed' : 'guest' }),
+  setStatus: (status) => set({ status }),
+  markFresh: () => set({ lastFetchedAt: Date.now() }),
+  reset: () => {
+    tokenStorage.clear();
+    set({ user: null, status: 'guest', lastFetchedAt: null });
+  },
+}));
 
-export function hasFreshSession(user: User | null, lastValidatedAt: number | null) {
-  return Boolean(
-    user &&
-      lastValidatedAt &&
-      Date.now() - lastValidatedAt < SESSION_CACHE_TTL_MS
+export function isSessionFresh(): boolean {
+  const state = useSessionStore.getState();
+  return (
+    state.lastFetchedAt !== null &&
+    Date.now() - state.lastFetchedAt < SESSION_TTL_MS
   );
 }

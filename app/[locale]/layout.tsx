@@ -1,45 +1,82 @@
-import { NextIntlClientProvider } from 'next-intl';
-import { getMessages } from 'next-intl/server';
-import { ThemeProvider } from 'next-themes';
-
-import { LocaleDocumentSync } from '@/components/shared/locale-document-sync';
+import type { Metadata } from 'next';
+import { Inter, IBM_Plex_Sans_Arabic, JetBrains_Mono } from 'next/font/google';
+import { NextIntlClientProvider, hasLocale } from 'next-intl';
+import { setRequestLocale } from 'next-intl/server';
+import { notFound } from 'next/navigation';
+import type { ReactNode } from 'react';
+import { ThemeProvider } from '@/components/shared/theme-provider';
 import { Toaster } from '@/components/ui/sonner';
-import { TooltipProvider } from '@/components/ui/tooltip';
-import { cn } from '@/lib/utils';
+import { SessionBootstrap } from '@/components/auth/session-bootstrap';
+import { routing, dirOf, type Locale } from '@/lib/i18n/routing';
+import '../globals.css';
+
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-inter',
+});
+
+const plexArabic = IBM_Plex_Sans_Arabic({
+  subsets: ['arabic', 'latin'],
+  weight: ['300', '400', '500', '600', '700'],
+  display: 'swap',
+  variable: '--font-plex-ar',
+});
+
+const jetbrains = JetBrains_Mono({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-jetbrains',
+});
+
+export const metadata: Metadata = {
+  title: 'Mobili Mafqud',
+  description: 'Lost & stolen phone reporting platform.',
+  icons: { icon: '/favicon.ico' },
+};
+
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
+}
 
 export default async function LocaleLayout({
   children,
   params,
 }: {
-  children: React.ReactNode;
+  children: ReactNode;
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-  const messages = await getMessages();
-  const isRtl = locale === 'ar';
+  if (!hasLocale(routing.locales, locale)) notFound();
+  setRequestLocale(locale);
+
+  const dir = dirOf(locale as Locale);
 
   return (
-    <NextIntlClientProvider locale={locale} messages={messages}>
-      <ThemeProvider
-        attribute="class"
-        defaultTheme="light"
-        enableSystem
-        disableTransitionOnChange
-      >
-        <LocaleDocumentSync
-          locale={locale}
-          direction={isRtl ? 'rtl' : 'ltr'}
-        />
-        <TooltipProvider delayDuration={120}>
-          <div
-            dir={isRtl ? 'rtl' : 'ltr'}
-            className={cn('min-h-screen', isRtl && 'font-arabic')}
+    <html
+      lang={locale}
+      dir={dir}
+      suppressHydrationWarning
+      className={`${inter.variable} ${plexArabic.variable} ${jetbrains.variable}`}
+    >
+      <body className="min-h-screen bg-background text-foreground antialiased">
+        <NextIntlClientProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
           >
+            <SessionBootstrap />
             {children}
-          </div>
-          <Toaster position="top-center" dir={isRtl ? 'rtl' : 'ltr'} richColors />
-        </TooltipProvider>
-      </ThemeProvider>
-    </NextIntlClientProvider>
+            <Toaster
+              position={dir === 'rtl' ? 'top-left' : 'top-right'}
+              richColors
+              closeButton
+            />
+          </ThemeProvider>
+        </NextIntlClientProvider>
+      </body>
+    </html>
   );
 }

@@ -1,93 +1,76 @@
 'use client';
 
-import { Mail } from 'lucide-react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { z } from 'zod';
 import { useTranslations } from 'next-intl';
-
-import { errorToast, successToast } from '@/components/shared/error-toast';
+import { Loader2 } from 'lucide-react';
+import { toast } from 'sonner';
+import { AuthCard } from './auth-card';
 import { Button } from '@/components/ui/button';
-import {
-  InputGroup,
-  InputGroupAddon,
-  InputGroupInput,
-} from '@/components/ui/input-group';
-import { Label } from '@/components/ui/label';
-import { Link } from '@/i18n/routing';
-import { authApi } from '@/lib/api/auth';
-import {
-  resendConfirmationSchema,
-  ResendConfirmationInput,
-} from '@/lib/validations/auth';
+import { Input } from '@/components/ui/input';
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
+import { Link } from './utils';
+import { authApi } from '@/lib/api/endpoints';
+import { apiErrorKey } from '@/lib/i18n/dictionaries/error-copy';
+import { ApiError } from '@/lib/api/errors';
+
+const schema = z.object({ email: z.string().email() });
+type FormValues = z.infer<typeof schema>;
 
 export function ResendConfirmationForm() {
   const t = useTranslations();
-  const [isLoading, setIsLoading] = useState(false);
-  const [emailSent, setEmailSent] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [sent, setSent] = useState(false);
+  const form = useForm<FormValues>({ resolver: zodResolver(schema), defaultValues: { email: '' } });
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<ResendConfirmationInput>({
-    resolver: zodResolver(resendConfirmationSchema),
-  });
-
-  const onSubmit = async (data: ResendConfirmationInput) => {
-    setIsLoading(true);
+  const onSubmit = async (v: FormValues) => {
+    setSubmitting(true);
     try {
-      await authApi.resendConfirmation(data);
-      setEmailSent(true);
-      successToast(t('auth.resendConfirmationSent'));
-    } catch (error) {
-      errorToast({ error, fallbackMessage: t('errors.networkError') });
+      await authApi.resendConfirmation(v);
+      setSent(true);
+      toast.success(t('auth.resendConfirmationSent'));
+    } catch (e) {
+      const msg = e instanceof ApiError && e.message ? e.message : (t(apiErrorKey(e)) as string);
+      toast.error(msg);
     } finally {
-      setIsLoading(false);
+      setSubmitting(false);
     }
   };
 
-  if (emailSent) {
-    return (
-      <div className="space-y-4">
-        <div className="rounded-[1.5rem] border border-emerald-500/20 bg-emerald-500/8 p-4 text-sm text-emerald-700 dark:text-emerald-300">
+  return (
+    <AuthCard
+      title={t('auth.resendConfirmationTitle')}
+      footer={<Link href="/login" className="text-accent hover:underline">{t('common.signIn')}</Link>}
+    >
+      {sent ? (
+        <div className="rounded-md border border-success/40 bg-success/10 p-3 text-sm">
           {t('auth.resendConfirmationSent')}
         </div>
-        <Button asChild variant="outline" className="h-12 w-full rounded-2xl">
-          <Link href="/login">{t('common.back')}</Link>
-        </Button>
-      </div>
-    );
-  }
-
-  return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
-      <div className="space-y-2">
-        <Label htmlFor="email">{t('auth.email')}</Label>
-        <InputGroup className="h-12 rounded-2xl border-border/70 bg-background/65">
-          <InputGroupAddon align="inline-start">
-            <Mail className="size-4" />
-          </InputGroupAddon>
-          <InputGroupInput
-            id="email"
-            type="email"
-            {...register('email')}
-          />
-        </InputGroup>
-        {errors.email && (
-          <p className="text-sm text-destructive">
-            {t(errors.email.message as string)}
-          </p>
-        )}
-      </div>
-
-      <Button
-        type="submit"
-        className="h-12 w-full rounded-2xl"
-        disabled={isLoading}
-      >
-        {isLoading ? t('common.loading') : t('auth.resendConfirmationSubmit')}
-      </Button>
-    </form>
+      ) : (
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+            <FormField
+              control={form.control}
+              name="email"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>{t('common.email')}</FormLabel>
+                  <FormControl>
+                    <Input type="email" autoComplete="email" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <Button type="submit" className="w-full" disabled={submitting}>
+              {submitting && <Loader2 className="h-4 w-4 animate-spin" />}
+              {t('auth.resendConfirmationSubmit')}
+            </Button>
+          </form>
+        </Form>
+      )}
+    </AuthCard>
   );
 }

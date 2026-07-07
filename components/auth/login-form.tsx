@@ -1,122 +1,127 @@
 'use client';
 
-import { Lock, Mail } from 'lucide-react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { z } from 'zod';
 import { useTranslations } from 'next-intl';
-
-import { errorToast } from '@/components/shared/error-toast';
+import { Loader2 } from 'lucide-react';
+import { toast } from 'sonner';
+import { AuthCard } from './auth-card';
 import { Button } from '@/components/ui/button';
-import { InputGroup, InputGroupAddon, InputGroupInput } from '@/components/ui/input-group';
-import { Label } from '@/components/ui/label';
-import { authApi } from '@/lib/api/auth';
-import { setAuthTokens } from '@/lib/auth/token';
-import { loginSchema, LoginInput } from '@/lib/validations/auth';
-import { Link, useRouter } from '@/i18n/routing';
+import { Input } from '@/components/ui/input';
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@/components/ui/form';
+import { Link, useRouter, useSearchParamsCompat } from '@/components/auth/utils';
+import { loginAndCommit } from '@/lib/auth/login-flow';
+import { roleHomeHref } from '@/lib/hooks/use-role-home';
+import { ApiError } from '@/lib/api/errors';
+import { apiErrorKey } from '@/lib/i18n/dictionaries/error-copy';
+
+const schema = z.object({
+  email: z.string().email(),
+  password: z.string().min(1),
+});
+type FormValues = z.infer<typeof schema>;
 
 export function LoginForm() {
   const t = useTranslations();
   const router = useRouter();
-  const [isLoading, setIsLoading] = useState(false);
-  const [emailNotVerified, setEmailNotVerified] = useState(false);
+  const search = useSearchParamsCompat();
+  const [submitting, setSubmitting] = useState(false);
 
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<LoginInput>({
-    resolver: zodResolver(loginSchema),
+  const form = useForm<FormValues>({
+    resolver: zodResolver(schema),
+    defaultValues: { email: '', password: '' },
   });
 
-  const onSubmit = async (data: LoginInput) => {
-    setIsLoading(true);
-
+  const onSubmit = async (values: FormValues) => {
+    setSubmitting(true);
     try {
-      const result = await authApi.login(data);
-      setAuthTokens({
-        accessToken: result.accessToken,
-        refreshToken: result.refreshToken,
-      });
-      router.replace('/');
-    } catch (error) {
-      const apiError = error as { code?: string } | null;
-      if (apiError && typeof apiError === 'object' && apiError.code === 'EMAIL_NOT_VERIFIED') {
-        setEmailNotVerified(true);
-        errorToast({
-          title: t('auth.loginError'),
-          error,
-          fallbackMessage: t('auth.emailNotVerified'),
-        });
-      } else {
-        setEmailNotVerified(false);
-        errorToast({
-          title: t('auth.loginError'),
-          error,
-          fallbackMessage: t('errors.networkError'),
-        });
-      }
+      const res = await loginAndCommit(values.email, values.password);
+      const redirect = search.get('redirect');
+      router.replace(redirect || roleHomeHref(res.user.role));
+    } catch (e) {
+      const key = apiErrorKey(e);
+      const msg =
+        e instanceof ApiError && e.message ? e.message : (t(key) as string);
+      toast.error(msg);
     } finally {
-      setIsLoading(false);
+      setSubmitting(false);
     }
   };
 
   return (
-    <>
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
-        <div className="space-y-2">
-          <Label htmlFor="email">{t('auth.email')}</Label>
-          <InputGroup className="h-12 rounded-2xl border-border/70 bg-background/65">
-            <InputGroupAddon align="inline-start">
-              <Mail className="size-4" />
-            </InputGroupAddon>
-            <InputGroupInput
-              id="email"
-              type="email"
-              {...register('email')}
-            />
-          </InputGroup>
-          {errors.email && (
-            <p className="text-sm text-destructive">{t(errors.email.message as string)}</p>
-          )}
-        </div>
-
-        <div className="space-y-2">
-          <Label htmlFor="password">{t('auth.password')}</Label>
-          <InputGroup className="h-12 rounded-2xl border-border/70 bg-background/65">
-            <InputGroupAddon align="inline-start">
-              <Lock className="size-4" />
-            </InputGroupAddon>
-            <InputGroupInput
-              id="password"
-              type="password"
-              {...register('password')}
-            />
-          </InputGroup>
-          {errors.password && (
-            <p className="text-sm text-destructive">
-              {t(errors.password.message as string)}
-            </p>
-          )}
-        </div>
-
-        <Button type="submit" className="h-12 w-full rounded-2xl" disabled={isLoading}>
-          {isLoading ? t('auth.loggingIn') : t('auth.loginButton')}
-        </Button>
-      </form>
-      {emailNotVerified && (
-        <div className="mt-4 rounded-[1.5rem] border border-amber-500/20 bg-amber-500/8 p-4 text-sm">
-          <p className="font-medium text-amber-700 dark:text-amber-300">
-            {t('auth.emailNotVerified')}
-          </p>
-          <Link
-            href="/resend-confirmation"
-            className="mt-2 inline-block font-medium text-primary hover:underline"
-          >
-            {t('auth.resendConfirmationCta')}
+    <AuthCard
+      title={t('auth.loginTitle')}
+      subtitle={t('auth.loginSubtitle')}
+      footer={
+        <>
+          {t('auth.noAccountYet')}{' '}
+          <Link href="/signup" className="font-medium text-accent hover:underline">
+            {t('common.signUp')}
           </Link>
+        </>
+      }
+    >
+      {search.get('reason') === 'session-expired' && (
+        <div className="mb-4 rounded-md border border-warning/40 bg-warning/10 p-3 text-sm text-warning-foreground">
+          {t('auth.sessionExpiredDescription')}
         </div>
       )}
-    </>
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+          <FormField
+            control={form.control}
+            name="email"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>{t('common.email')}</FormLabel>
+                <FormControl>
+                  <Input
+                    type="email"
+                    autoComplete="email"
+                    placeholder={t('auth.loginEmailPlaceholder')}
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="password"
+            render={({ field }) => (
+              <FormItem>
+                <div className="flex items-center justify-between">
+                  <FormLabel>{t('common.password')}</FormLabel>
+                  <Link
+                    href="/forgot-password"
+                    className="text-xs text-accent hover:underline"
+                  >
+                    {t('auth.forgotPasswordLink')}
+                  </Link>
+                </div>
+                <FormControl>
+                  <Input type="password" autoComplete="current-password" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <Button type="submit" className="w-full" disabled={submitting}>
+            {submitting && <Loader2 className="h-4 w-4 animate-spin" />}
+            {t('auth.loginSubmit')}
+          </Button>
+        </form>
+      </Form>
+    </AuthCard>
   );
 }
