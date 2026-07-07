@@ -5,7 +5,7 @@
 
 ## Summary
 
-Build a web-based admin dashboard for the Mobili Mafqud platform that
+Build a web-based admin dashboard for the Telephony Mafqud platform that
 enables moderators to review and manage phone reports, and administrators
 to manage users, moderators, and reports. The dashboard consumes the
 existing NestJS backend API, supports Arabic (RTL) and English (LTR),

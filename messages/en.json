@@ -1,6 +1,6 @@
 {
   "common": {
-    "appName": "Mobili Mafqud",
+    "appName": "Telephony Mafqud",
     "loading": "Loading…",
     "save": "Save",
     "cancel": "Cancel",
@@ -376,7 +376,7 @@
     "getStarted": "Report a phone",
     "eyebrow": "Phone recovery platform",
     "heroTitle": "Report a lost phone. Track the search. Bring it home.",
-    "heroSubtitle": "Mobili Mafqud puts owners, moderators, and lawyers on one trusted platform — so a lost or stolen phone has the best possible chance of coming back.",
+    "heroSubtitle": "Telephony Mafqud puts owners, moderators, and lawyers on one trusted platform — so a lost or stolen phone has the best possible chance of coming back.",
     "heroStatus": "Live recovery network",
     "navHowItWorks": "How it works",
     "navFeatures": "Features",

@@ -42,8 +42,8 @@ const grotesk = Space_Grotesk({
 
 export const metadata: Metadata = {
   title: {
-    default: 'Mobili Mafqud — Recover lost & stolen phones',
-    template: '%s · Mobili Mafqud',
+    default: 'Telephony Mafqud — Recover lost & stolen phones',
+    template: '%s · Telephony Mafqud',
   },
   description:
     'Report a lost or stolen phone, track its recovery, and get it back — a single trusted platform for owners, moderators, and lawyers.',

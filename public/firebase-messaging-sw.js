@@ -14,7 +14,7 @@ const messaging = getMessaging(firebaseApp);
 
 onBackgroundMessage(messaging, (payload) => {
   if (self.registration) {
-    self.registration.showNotification(payload.notification?.title || 'Mobili Mafqud', {
+    self.registration.showNotification(payload.notification?.title || 'Telephony Mafqud', {
       body: payload.notification?.body || '',
       icon: '/icon-192.png',
       badge: '/icon-192.png',

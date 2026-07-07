@@ -21,7 +21,7 @@
   Follow-up TODOs: None
 -->
 
-# Mobili Mafqud Admin Dashboard Constitution
+# Telephony Mafqud Admin Dashboard Constitution
 
 ## Core Principles
 

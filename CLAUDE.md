@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Admin dashboard for **Mobili Mafqud** (موبايلي مفقود) — a lost/stolen phone reporting platform. This is the `web/` directory of a monorepo. The backend lives in `api/` (NestJS). This frontend consumes the NestJS REST API directly via a fetch-based client; there is no BFF or separate backend.
+Admin dashboard for **Telephony Mafqud** (تيليفوني مفقود) — a lost/stolen phone reporting platform. This is the `web/` directory of a monorepo. The backend lives in `api/` (NestJS). This frontend consumes the NestJS REST API directly via a fetch-based client; there is no BFF or separate backend.
 
 ## Commands
 
