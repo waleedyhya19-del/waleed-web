@@ -32,9 +32,13 @@ const isDev = process.env.NODE_ENV === 'development';
 const nextConfig: NextConfig = {
   async headers() {
     const connectSrc = buildConnectSrc();
+    // Google Identity Services (Sign in with Google button)
+    const gsiScript = 'https://accounts.google.com/gsi/client';
+    const gsiStyle = 'https://accounts.google.com/gsi/style';
+    const gsiFrame = 'https://accounts.google.com/gsi/';
     const scriptSrc = isDev
-      ? `'self' 'unsafe-eval' 'unsafe-inline'`
-      : `'self' 'unsafe-inline'`;
+      ? `'self' 'unsafe-eval' 'unsafe-inline' ${gsiScript}`
+      : `'self' 'unsafe-inline' ${gsiScript}`;
 
     return [
       {
@@ -42,7 +46,7 @@ const nextConfig: NextConfig = {
         headers: [
           {
             key: 'Content-Security-Policy',
-            value: `default-src 'self'; script-src ${scriptSrc}; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data: https://fonts.gstatic.com; connect-src ${connectSrc}; frame-ancestors 'none';`,
+            value: `default-src 'self'; script-src ${scriptSrc}; style-src 'self' 'unsafe-inline' ${gsiStyle}; img-src 'self' data: blob: https:; font-src 'self' data: https://fonts.gstatic.com; connect-src ${connectSrc}; frame-src ${gsiFrame}; frame-ancestors 'none';`,
           },
           { key: 'X-Frame-Options', value: 'DENY' },
           { key: 'X-Content-Type-Options', value: 'nosniff' },

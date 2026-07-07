@@ -8,6 +8,7 @@ import { useTranslations } from 'next-intl';
 import { Loader2 } from 'lucide-react';
 import { toast } from 'sonner';
 import { AuthCard } from './auth-card';
+import { GoogleSignInButton } from './google-sign-in-button';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import {
@@ -122,6 +123,7 @@ export function LoginForm() {
           </Button>
         </form>
       </Form>
+      <GoogleSignInButton text="signin_with" redirect={search.get('redirect')} />
     </AuthCard>
   );
 }

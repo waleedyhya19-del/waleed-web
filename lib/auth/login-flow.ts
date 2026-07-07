@@ -26,6 +26,12 @@ export async function signupAndCommit(payload: {
   return res;
 }
 
+export async function googleOAuthAndCommit(idToken: string) {
+  const res = await authApi.googleOAuth({ idToken });
+  commitAuthResponse(res);
+  return res;
+}
+
 export async function logoutAndReset() {
   try {
     await authApi.logout();
