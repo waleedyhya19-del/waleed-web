@@ -7,7 +7,7 @@ import { uuidv4 } from '@/lib/utils/uuid';
 const DEFAULT_BASE = 'http://localhost:3000/api/v1';
 
 function baseUrl() {
-  return process.env.NEXT_PUBLIC_API_URL || DEFAULT_BASE;
+  return (process.env.NEXT_PUBLIC_API_URL || DEFAULT_BASE).replace(/\/+$/, '');
 }
 
 type Method = 'GET' | 'POST' | 'PATCH' | 'PUT' | 'DELETE';
