@@ -1,9 +1,9 @@
-import { Loader2 } from 'lucide-react';
+import { RadarLoader } from './radar-loader';
 
 export function PageSpinner() {
   return (
     <div className="flex min-h-[40vh] w-full items-center justify-center">
-      <Loader2 className="h-6 w-6 animate-spin text-muted-foreground" />
+      <RadarLoader size={32} />
     </div>
   );
 }

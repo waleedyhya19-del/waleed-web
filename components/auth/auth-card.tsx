@@ -1,4 +1,6 @@
 import type { ReactNode } from 'react';
+import { Logo } from '@/components/brand/logo';
+import { Link } from '@/lib/i18n/routing';
 
 export function AuthCard({
   title,
@@ -12,21 +14,38 @@ export function AuthCard({
   footer?: ReactNode;
 }) {
   return (
-    <div className="min-h-screen bg-muted/30 grid place-items-center px-4 py-10">
-      <div className="w-full max-w-md">
-        <div className="mb-6 flex items-center gap-2">
-          <div className="flex h-9 w-9 items-center justify-center rounded-md bg-primary text-primary-foreground text-sm font-bold">
-            M
+    <div className="relative min-h-screen overflow-hidden bg-background px-4 py-10">
+      {/* Radar field backdrop */}
+      <div className="pointer-events-none absolute inset-0 bg-grid bg-grid-fade" />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute start-1/2 top-[-8%] h-[380px] w-[720px] -translate-x-1/2 rounded-full opacity-50 blur-3xl"
+        style={{ background: 'radial-gradient(closest-side, var(--glow), transparent 70%)' }}
+      />
+      <div className="relative grid min-h-[calc(100vh-5rem)] place-items-center">
+        <div className="w-full max-w-md">
+          <div className="mb-6 flex justify-center">
+            <Link href="/" aria-label={title}>
+              <Logo markClassName="h-9 w-9" />
+            </Link>
           </div>
-        </div>
-        <div className="rounded-xl border border-border bg-card p-6 shadow-xs">
-          <div className="mb-6 space-y-1.5">
-            <h1 className="text-lg font-semibold tracking-tight">{title}</h1>
-            {subtitle && <p className="text-sm text-muted-foreground">{subtitle}</p>}
+          <div className="rounded-xl border border-border bg-card/90 p-6 shadow-sm backdrop-blur-sm sm:p-7">
+            <div className="mb-6 space-y-1.5">
+              <h1 className="font-display text-xl font-semibold tracking-tight">
+                {title}
+              </h1>
+              {subtitle && (
+                <p className="text-sm text-muted-foreground">{subtitle}</p>
+              )}
+            </div>
+            {children}
           </div>
-          {children}
+          {footer && (
+            <div className="mt-5 text-center text-sm text-muted-foreground">
+              {footer}
+            </div>
+          )}
         </div>
-        {footer && <div className="mt-4 text-center text-sm text-muted-foreground">{footer}</div>}
       </div>
     </div>
   );

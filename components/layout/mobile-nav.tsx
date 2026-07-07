@@ -10,6 +10,7 @@ import { cn } from '@/lib/utils/cn';
 import { filterNavByRole, type NavGroup } from '@/lib/nav/registry';
 import type { Role } from '@/lib/api/types';
 import { dirOf, type Locale } from '@/lib/i18n/routing';
+import { LogoMark } from '@/components/brand/logo';
 
 export function MobileNav({
   role,
@@ -36,11 +37,9 @@ export function MobileNav({
       </SheetTrigger>
       <SheetContent side={side} className="w-72 p-0">
         <SheetHeader className="border-b border-border p-4">
-          <SheetTitle className="flex items-center gap-2">
-            <div className="flex h-7 w-7 items-center justify-center rounded-md bg-primary text-primary-foreground text-xs font-bold">
-              M
-            </div>
-            {brand}
+          <SheetTitle className="flex items-center gap-2.5">
+            <LogoMark className="h-7 w-7" />
+            <span className="font-display">{brand}</span>
           </SheetTitle>
         </SheetHeader>
         <nav className="flex flex-col gap-1 p-2">
@@ -58,13 +57,16 @@ export function MobileNav({
                     href={item.href}
                     onClick={() => setOpen(false)}
                     className={cn(
-                      'flex items-center gap-3 rounded-md px-3 py-2 text-sm',
+                      'flex items-center gap-3 rounded-md px-3 py-2 text-sm transition-colors',
                       active
-                        ? 'bg-accent/10 text-foreground'
-                        : 'text-muted-foreground hover:bg-accent/10 hover:text-foreground',
+                        ? 'bg-brand/10 font-medium text-foreground'
+                        : 'text-muted-foreground hover:bg-brand/5 hover:text-foreground',
                     )}
+                    aria-current={active ? 'page' : undefined}
                   >
-                    <Icon className="h-4 w-4" />
+                    <Icon
+                      className={cn('h-4 w-4', active && 'text-brand')}
+                    />
                     {t(item.labelKey)}
                   </Link>
                 );

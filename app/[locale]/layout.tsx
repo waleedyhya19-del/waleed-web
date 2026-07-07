@@ -1,5 +1,10 @@
 import type { Metadata } from 'next';
-import { Inter, IBM_Plex_Sans_Arabic, JetBrains_Mono } from 'next/font/google';
+import {
+  Inter,
+  IBM_Plex_Sans_Arabic,
+  JetBrains_Mono,
+  Space_Grotesk,
+} from 'next/font/google';
 import { NextIntlClientProvider, hasLocale } from 'next-intl';
 import { setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
@@ -29,10 +34,19 @@ const jetbrains = JetBrains_Mono({
   variable: '--font-jetbrains',
 });
 
+const grotesk = Space_Grotesk({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-grotesk',
+});
+
 export const metadata: Metadata = {
-  title: 'Mobili Mafqud',
-  description: 'Lost & stolen phone reporting platform.',
-  icons: { icon: '/favicon.ico' },
+  title: {
+    default: 'Mobili Mafqud — Recover lost & stolen phones',
+    template: '%s · Mobili Mafqud',
+  },
+  description:
+    'Report a lost or stolen phone, track its recovery, and get it back — a single trusted platform for owners, moderators, and lawyers.',
 };
 
 export function generateStaticParams() {
@@ -57,7 +71,7 @@ export default async function LocaleLayout({
       lang={locale}
       dir={dir}
       suppressHydrationWarning
-      className={`${inter.variable} ${plexArabic.variable} ${jetbrains.variable}`}
+      className={`${inter.variable} ${plexArabic.variable} ${jetbrains.variable} ${grotesk.variable}`}
     >
       <body className="min-h-screen bg-background text-foreground antialiased">
         <NextIntlClientProvider>

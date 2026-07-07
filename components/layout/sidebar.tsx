@@ -9,6 +9,7 @@ import { filterNavByRole, type NavGroup } from '@/lib/nav/registry';
 import type { Role } from '@/lib/api/types';
 import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
+import { Logo, LogoMark } from '@/components/brand/logo';
 
 interface SidebarProps {
   role: Role;
@@ -16,7 +17,7 @@ interface SidebarProps {
   brand: string;
 }
 
-export function Sidebar({ role, groups, brand }: SidebarProps) {
+export function Sidebar({ role, groups }: SidebarProps) {
   const t = useTranslations();
   const pathname = usePathname();
   const [collapsed, setCollapsed] = useState(false);
@@ -31,11 +32,12 @@ export function Sidebar({ role, groups, brand }: SidebarProps) {
       )}
       data-collapsed={collapsed}
     >
-      <div className="flex h-14 items-center gap-2 border-b border-sidebar-border px-4">
-        <div className="flex h-8 w-8 items-center justify-center rounded-md bg-primary text-primary-foreground text-sm font-bold">
-          M
-        </div>
-        {!collapsed && <span className="text-sm font-semibold">{brand}</span>}
+      <div className="flex h-14 items-center gap-2 border-b border-sidebar-border px-3">
+        {collapsed ? (
+          <LogoMark className="mx-auto h-8 w-8" />
+        ) : (
+          <Logo className="ps-1" />
+        )}
         <Button
           variant="ghost"
           size="icon"
@@ -67,15 +69,24 @@ export function Sidebar({ role, groups, brand }: SidebarProps) {
                     key={item.href}
                     href={item.href}
                     className={cn(
-                      'flex items-center gap-3 rounded-md px-2 py-2 text-sm transition-colors',
+                      'group/nav relative flex items-center gap-3 rounded-md px-2 py-2 text-sm transition-colors',
                       collapsed && 'justify-center',
                       active
-                        ? 'bg-sidebar-accent text-sidebar-accent-foreground'
-                        : 'text-sidebar-foreground/80 hover:bg-sidebar-accent/50 hover:text-sidebar-accent-foreground',
+                        ? 'bg-brand/10 font-medium text-foreground'
+                        : 'text-sidebar-foreground/75 hover:bg-sidebar-accent/60 hover:text-sidebar-accent-foreground',
                     )}
                     title={collapsed ? t(item.labelKey) : undefined}
+                    aria-current={active ? 'page' : undefined}
                   >
-                    <Icon className="h-4 w-4 shrink-0" />
+                    {active && (
+                      <span className="absolute inset-y-1.5 start-0 w-0.5 rounded-full bg-brand" />
+                    )}
+                    <Icon
+                      className={cn(
+                        'h-4 w-4 shrink-0 transition-colors',
+                        active ? 'text-brand' : 'text-current',
+                      )}
+                    />
                     {!collapsed && <span className="truncate">{t(item.labelKey)}</span>}
                   </Link>
                 );
