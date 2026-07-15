@@ -1,6 +1,6 @@
 # Product Requirements Document (PRD)
 
-# تيليفوني مفقود - لوحة التحكم (I Lost My Phone - Admin Dashboard)
+# تليفوني - لوحة التحكم (I Lost My Phone - Admin Dashboard)
 
 **Version:** 1.0
 **Date:** 2026-03-06
@@ -30,7 +30,7 @@
 
 ## 1. Product Overview
 
-The **Admin Dashboard** is a web application for moderators and administrators of the "تيليفوني مفقود" platform. It provides a browser-based interface for managing reports, users, and moderators. End users do not have access to this application. they use the Android mobile app exclusively. Moderators and admins can also use the mobile app for basic operations (viewing reports, updating statuses), but the web dashboard is their primary tool for management workflows.
+The **Admin Dashboard** is a web application for moderators and administrators of the "تليفوني" platform. It provides a browser-based interface for managing reports, users, and moderators. End users do not have access to this application. they use the Android mobile app exclusively. Moderators and admins can also use the mobile app for basic operations (viewing reports, updating statuses), but the web dashboard is their primary tool for management workflows.
 
 This web app consumes the same NestJS backend API documented in `docs/PRD.md`. No separate backend is required.
 

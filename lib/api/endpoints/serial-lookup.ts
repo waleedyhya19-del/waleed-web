@@ -18,7 +18,9 @@ export interface SerialLookupMatch {
     type: ReportType;
     status: ReportStatus;
     reportCategory: ReportCategory;
+    phoneBrand: string | null;
     lossArea: string | null;
+    hasReward: boolean;
     createdAt: string;
     rewardIfDataIntact: number | null;
     rewardIfWiped: number | null;
