@@ -9,12 +9,14 @@ import { authApi } from '@/lib/api/endpoints';
 import { apiErrorKey } from '@/lib/i18n/dictionaries/error-copy';
 import { ApiError } from '@/lib/api/errors';
 import { Loader2 } from 'lucide-react';
+import { useSessionStore } from '@/stores/session-store';
 
 export function ConfirmEmailPanel() {
   const t = useTranslations();
   const search = useSearchParamsCompat();
   const token = search.get('token');
   const email = search.get('email');
+  const role = useSessionStore((s) => s.user?.role);
   const [state, setState] = useState<'pending' | 'success' | 'error'>('pending');
   const [errorMsg, setErrorMsg] = useState<string>('');
   const [dialogOpen, setDialogOpen] = useState(false);
@@ -55,7 +57,7 @@ export function ConfirmEmailPanel() {
     <AuthCard
       title={t('auth.confirmEmailTitle')}
       subtitle={t('auth.confirmEmailSubtitle')}
-      footer={<Link href="/login" className="text-accent hover:underline">{t('common.signIn')}</Link>}
+      footer={role !== 'END_USER' && <Link href="/login" className="text-accent hover:underline">{t('common.signIn')}</Link>}
     >
       {state === 'pending' && (
         <div className="flex items-center gap-2 text-sm text-muted-foreground">

@@ -22,6 +22,7 @@ import { Link, useSearchParamsCompat } from './utils';
 import { authApi } from '@/lib/api/endpoints';
 import { apiErrorKey } from '@/lib/i18n/dictionaries/error-copy';
 import { ApiError } from '@/lib/api/errors';
+import { useSessionStore } from '@/stores/session-store';
 
 const schema = z
   .object({
@@ -38,6 +39,7 @@ export function ResetPasswordForm() {
   const t = useTranslations();
   const search = useSearchParamsCompat();
   const token = search.get('token') ?? '';
+  const role = useSessionStore((s) => s.user?.role);
   const [submitting, setSubmitting] = useState(false);
   const [result, setResult] = useState<{ type: 'success' | 'error'; message: string } | null>(null);
 
@@ -66,7 +68,7 @@ export function ResetPasswordForm() {
   return (
     <AuthCard
       title={t('auth.resetPasswordTitle')}
-      footer={<Link href="/login" className="text-accent hover:underline">{t('common.signIn')}</Link>}
+      footer={role !== 'END_USER' && <Link href="/login" className="text-accent hover:underline">{t('common.signIn')}</Link>}
     >
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
