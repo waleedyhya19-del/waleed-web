@@ -42,11 +42,11 @@ const grotesk = Space_Grotesk({
 
 export const metadata: Metadata = {
   title: {
-    default: 'Telephony Mafqud — Recover lost & stolen phones',
-    template: '%s · Telephony Mafqud',
+    default: 'Telephoney Mafqud — Recover lost & missing phones',
+    template: '%s · Telephoney Mafqud',
   },
   description:
-    'Report a lost or stolen phone, track its recovery, and get it back — a single trusted platform for owners, moderators, and lawyers.',
+    'Report a lost or missing phone, track its recovery, and get it back — a single trusted platform for owners, moderators, and lawyers.',
 };
 
 export function generateStaticParams() {

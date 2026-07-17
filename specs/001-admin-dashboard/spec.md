@@ -3,7 +3,7 @@
 **Feature Branch**: `001-admin-dashboard`
 **Created**: 2026-03-11
 **Status**: Draft
-**Input**: PRD-WEB.md — Admin dashboard for Telephony Mafqud moderators and administrators
+**Input**: PRD-WEB.md — Admin dashboard for Telephoney Mafqud moderators and administrators
 
 ## User Scenarios & Testing *(mandatory)*
 
