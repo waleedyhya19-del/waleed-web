@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { AuthCard } from './auth-card';
+import { ResultDialog } from './result-dialog';
 import { Link, useSearchParamsCompat } from './utils';
 import { authApi } from '@/lib/api/endpoints';
 import { apiErrorKey } from '@/lib/i18n/dictionaries/error-copy';
@@ -16,6 +17,7 @@ export function ConfirmEmailPanel() {
   const email = search.get('email');
   const [state, setState] = useState<'pending' | 'success' | 'error'>('pending');
   const [errorMsg, setErrorMsg] = useState<string>('');
+  const [dialogOpen, setDialogOpen] = useState(false);
 
   useEffect(() => {
     let cancelled = false;
@@ -24,17 +26,22 @@ export function ConfirmEmailPanel() {
         if (!cancelled) {
           setState('error');
           setErrorMsg(t('errors.validation'));
+          setDialogOpen(true);
         }
         return;
       }
       try {
         await authApi.confirmEmail({ token, email: email ?? '' });
-        if (!cancelled) setState('success');
+        if (!cancelled) {
+          setState('success');
+          setDialogOpen(true);
+        }
       } catch (e) {
         const msg = e instanceof ApiError && e.message ? e.message : (t(apiErrorKey(e)) as string);
         if (!cancelled) {
           setState('error');
           setErrorMsg(msg);
+          setDialogOpen(true);
         }
       }
     };
@@ -56,16 +63,14 @@ export function ConfirmEmailPanel() {
           {t('common.loading')}
         </div>
       )}
-      {state === 'success' && (
-        <div className="rounded-md border border-success/40 bg-success/10 p-3 text-sm text-success-foreground">
-          {t('auth.confirmEmailSuccess')}
-        </div>
-      )}
-      {state === 'error' && (
-        <div className="rounded-md border border-destructive/40 bg-destructive/10 p-3 text-sm text-destructive-foreground">
-          {errorMsg}
-        </div>
-      )}
+
+      <ResultDialog
+        open={dialogOpen}
+        type={state === 'success' ? 'success' : 'error'}
+        title={state === 'success' ? t('common.success') : t('common.error')}
+        message={state === 'success' ? t('auth.confirmEmailSuccess') : errorMsg}
+        onClose={() => setDialogOpen(false)}
+      />
     </AuthCard>
   );
 }

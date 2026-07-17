@@ -13,6 +13,8 @@
     "filter": "Filter",
     "reset": "Reset",
     "close": "Close",
+    "success": "Success",
+    "error": "Error",
     "back": "Back",
     "next": "Next",
     "previous": "Previous",
