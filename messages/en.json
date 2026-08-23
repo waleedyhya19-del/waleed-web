@@ -98,6 +98,10 @@
     "changePasswordSubmit": "Change password",
     "setPasswordTitle": "Set a password",
     "setPasswordSubtitle": "Add a password to your account to sign in with email.",
+    "passwordSetSuccess": "Password has been set successfully.",
+    "signupSuccessNote": "Signup successful. We sent a confirmation link to your email {email} — please open it to activate your account.",
+    "emailNotVerifiedAlert": "Your email address has not been confirmed yet.",
+    "resendConfirmationLink": "Resend confirmation link",
     "createPasswordTitle": "Add email + password",
     "linkEmailTitle": "Link an email",
     "sessionExpiredTitle": "Session expired",
@@ -252,7 +256,14 @@
       "policeReportTitle": "Police report",
       "addPhoto": "Add photo",
       "removePhoto": "Remove",
-      "empty": "No photos in this category"
+      "empty": "No photos in this category",
+      "minTwoRequired": "At least 2 phone box photos are required.",
+      "maxSixAllowed": "A maximum of 6 phone box photos are allowed."
+    },
+    "reward": {
+      "rewardOffer": "Reward Offer",
+      "ifIntact": "If data intact",
+      "ifWiped": "If data wiped"
     },
     "notes": {
       "title": "Moderation notes",
@@ -354,7 +365,11 @@
     },
     "profile": {
       "title": "Profile",
-      "updated": "Profile updated"
+      "updated": "Profile updated",
+      "uploadPhoto": "Upload photo",
+      "removePhoto": "Remove photo",
+      "photoUpdated": "Profile photo updated.",
+      "photoRemoved": "Profile photo removed."
     },
     "password": {
       "title": "Change password",

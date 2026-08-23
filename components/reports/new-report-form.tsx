@@ -42,10 +42,23 @@ const schema = z.object({
   ]),
   reportCategory: z.enum([ReportCategory.BASIC, ReportCategory.LAWYER_REQUEST]),
   imei1: z.string().regex(/^\d{15}$/, 'errors.invalidImei').optional().or(z.literal('')),
+  imei2: z.string().regex(/^\d{15}$/, 'errors.invalidImei').optional().or(z.literal('')),
   phoneBrand: z.string().optional(),
   phoneModel: z.string().optional(),
   lastPhoneNumber1: z.string().optional(),
+  lastPhoneNumber2: z.string().optional(),
+  lossDate: z.string().optional(),
+  lossArea: z.string().optional(),
+  lossAddress: z.string().optional(),
+  reporterFullName: z.string().optional(),
+  witnessFullName: z.string().optional(),
+  witnessLocation: z.string().optional(),
+  contactPhoneNumber: z.string().optional(),
+  paymentPhoneNumber: z.string().optional(),
   description: z.string().max(2000).optional(),
+  hasReward: z.boolean().optional(),
+  rewardIfDataIntact: z.number().min(0).nullable().optional(),
+  rewardIfWiped: z.number().min(0).nullable().optional(),
 });
 type FormValues = z.infer<typeof schema>;
 
@@ -63,21 +76,57 @@ export function NewReportForm() {
       type: ReportType.LOST,
       reportCategory: ReportCategory.BASIC,
       imei1: '',
+      imei2: '',
       phoneBrand: '',
       phoneModel: '',
       lastPhoneNumber1: '',
+      lastPhoneNumber2: '',
+      lossDate: '',
+      lossArea: '',
+      lossAddress: '',
+      reporterFullName: '',
+      witnessFullName: '',
+      witnessLocation: '',
+      contactPhoneNumber: '',
+      paymentPhoneNumber: '',
       description: '',
+      hasReward: false,
+      rewardIfDataIntact: null,
+      rewardIfWiped: null,
     },
   });
 
+  const hasReward = form.watch('hasReward');
+
   const onSubmit = async (v: FormValues) => {
-    if (phoneBoxPhotos.length === 0) {
-      toast.error(t('errors.validation'));
+    if (phoneBoxPhotos.length < 2) {
+      toast.error(t('reports.photos.minTwoRequired'));
+      return;
+    }
+    if (phoneBoxPhotos.length > 6) {
+      toast.error(t('reports.photos.maxSixAllowed'));
       return;
     }
     setSubmitting(true);
     try {
-      const payload = { ...v, imei1: v.imei1 || undefined };
+      const payload = {
+        ...v,
+        imei1: v.imei1 || undefined,
+        imei2: v.imei2 || undefined,
+        lastPhoneNumber1: v.lastPhoneNumber1 || undefined,
+        lastPhoneNumber2: v.lastPhoneNumber2 || undefined,
+        lossDate: v.lossDate || undefined,
+        lossArea: v.lossArea || undefined,
+        lossAddress: v.lossAddress || undefined,
+        reporterFullName: v.reporterFullName || undefined,
+        witnessFullName: v.witnessFullName || undefined,
+        witnessLocation: v.witnessLocation || undefined,
+        contactPhoneNumber: v.contactPhoneNumber || undefined,
+        paymentPhoneNumber: v.paymentPhoneNumber || undefined,
+        description: v.description || undefined,
+        rewardIfDataIntact: v.hasReward ? v.rewardIfDataIntact : undefined,
+        rewardIfWiped: v.hasReward ? v.rewardIfWiped : undefined,
+      };
       const report = await reportsApi.create(payload, {
         phoneBoxPhotos,
         paymentReceiptPhoto: paymentReceiptPhoto.length ? paymentReceiptPhoto : undefined,
@@ -188,19 +237,90 @@ export function NewReportForm() {
                 )}
               />
             </div>
-            <FormField
-              control={form.control}
-              name="lastPhoneNumber1"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>{t('reports.fields.lastPhoneNumber1')}</FormLabel>
-                  <FormControl>
-                    <Input {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
+            <div className="grid gap-4 sm:grid-cols-2">
+              <FormField
+                control={form.control}
+                name="lastPhoneNumber1"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>{t('reports.fields.lastPhoneNumber1')}</FormLabel>
+                    <FormControl>
+                      <Input {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="lastPhoneNumber2"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>{t('reports.fields.lastPhoneNumber2')}</FormLabel>
+                    <FormControl>
+                      <Input {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+            <div className="grid gap-4 sm:grid-cols-2">
+              <FormField
+                control={form.control}
+                name="lossDate"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>{t('reports.fields.lossDate')}</FormLabel>
+                    <FormControl>
+                      <Input type="date" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="contactPhoneNumber"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>{t('reports.fields.contactPhoneNumber')}</FormLabel>
+                    <FormControl>
+                      <Input type="tel" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
+            <div className="grid gap-4 sm:grid-cols-2">
+              <FormField
+                control={form.control}
+                name="lossArea"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>{t('reports.fields.lossArea')}</FormLabel>
+                    <FormControl>
+                      <Input {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="lossAddress"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>{t('reports.fields.lossAddress')}</FormLabel>
+                    <FormControl>
+                      <Input {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+            </div>
             <FormField
               control={form.control}
               name="description"
@@ -208,7 +328,7 @@ export function NewReportForm() {
                 <FormItem>
                   <FormLabel>{t('reports.fields.description')}</FormLabel>
                   <FormControl>
-                    <Textarea rows={4} {...field} />
+                    <Textarea rows={3} {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -232,6 +352,7 @@ export function NewReportForm() {
               label={t('reports.photos.policeReportTitle')}
               files={policeReportPhoto}
               setFiles={setPoliceReportPhoto}
+              accept="image/jpeg,image/png,application/pdf"
             />
             <Button type="submit" className="w-full" disabled={submitting}>
               {submitting && <Loader2 className="h-4 w-4 animate-spin" />}
@@ -250,12 +371,14 @@ function PhotoField({
   setFiles,
   multiple,
   required,
+  accept = 'image/jpeg,image/png',
 }: {
   label: string;
   files: File[];
   setFiles: (fs: File[]) => void;
   multiple?: boolean;
   required?: boolean;
+  accept?: string;
 }) {
   return (
     <div className="rounded-lg border border-dashed border-border p-4">
@@ -282,7 +405,7 @@ function PhotoField({
         <input
           type="file"
           className="hidden"
-          accept="image/jpeg,image/png"
+          accept={accept}
           multiple={multiple}
           onChange={(e) => {
             const list = e.target.files ? Array.from(e.target.files) : [];

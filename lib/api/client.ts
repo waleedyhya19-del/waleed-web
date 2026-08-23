@@ -22,6 +22,8 @@ export interface RequestOptions {
   headers?: Record<string, string>;
 }
 
+import { normalizeResponsePayload } from './normalize';
+
 let refreshInFlight: Promise<string | null> | null = null;
 
 async function refreshTokens(): Promise<string | null> {
@@ -44,7 +46,7 @@ async function refreshTokens(): Promise<string | null> {
         accessToken: string;
         refreshToken: string;
       }>;
-      const tokens = json.data;
+      const tokens = normalizeResponsePayload(json.data);
       if (!tokens?.accessToken || !tokens?.refreshToken) return null;
       tokenStorage.write(tokens.accessToken, tokens.refreshToken);
       return tokens.accessToken;
@@ -140,7 +142,8 @@ async function coreRequest<T>(
   }
 
   const success = payload as ApiSuccess<T>;
-  return { data: success.data, meta: success.meta, message: success.message };
+  const normalizedData = normalizeResponsePayload(success.data);
+  return { data: normalizedData, meta: success.meta, message: success.message };
 }
 
 export async function apiRequest<T>(path: string, opts: RequestOptions = {}): Promise<T> {

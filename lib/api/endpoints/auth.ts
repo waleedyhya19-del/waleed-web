@@ -50,7 +50,7 @@ export interface RefreshPayload {
 
 export const authApi = {
   signup: (p: SignupPayload) =>
-    apiRequest<AuthResponse>('/auth/signup', { method: 'POST', body: p, skipAuth: true }),
+    apiRequest<{ user: User }>('/auth/signup', { method: 'POST', body: p, skipAuth: true }),
   login: (p: LoginPayload) =>
     apiRequest<AuthResponse>('/auth/login', { method: 'POST', body: p, skipAuth: true }),
   googleOAuth: (p: GoogleOAuthPayload) =>

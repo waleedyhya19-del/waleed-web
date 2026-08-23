@@ -58,8 +58,38 @@ export function SerialLookupPanel() {
         </Button>
       </form>
       {result && (
-        <div className="mt-4 surface-card p-6 text-sm">
-          {t(`serialLookup.result.${result.result}`)}
+        <div className="mt-4 surface-card p-6 space-y-3 text-sm">
+          <div className="flex items-center justify-between">
+            <span className="font-semibold text-base">
+              {t(`serialLookup.result.${result.result}`)}
+            </span>
+          </div>
+          {result.result !== 'NO_MATCH' && 'report' in result && result.report && (
+            <div className="mt-3 grid gap-3 sm:grid-cols-2 rounded-lg border border-border bg-muted/40 p-4">
+              <div>
+                <span className="text-xs text-muted-foreground block">{t('reports.fields.phoneBrand')}</span>
+                <span className="font-medium">{result.report.phoneBrand ?? '—'}</span>
+              </div>
+              <div>
+                <span className="text-xs text-muted-foreground block">{t('reports.fields.lossArea')}</span>
+                <span className="font-medium">{result.report.lossArea ?? '—'}</span>
+              </div>
+              <div>
+                <span className="text-xs text-muted-foreground block">{t('reports.filters.status')}</span>
+                <span className="font-medium">{t(`status.${result.report.status}`)}</span>
+              </div>
+              {result.report.hasReward && (
+                <div>
+                  <span className="text-xs text-muted-foreground block">{t('reports.reward.rewardOffer')}</span>
+                  <span className="font-medium text-success">
+                    {result.report.rewardIfDataIntact !== null
+                      ? `${result.report.rewardIfDataIntact} EGP`
+                      : t('common.yes')}
+                  </span>
+                </div>
+              )}
+            </div>
+          )}
         </div>
       )}
     </div>

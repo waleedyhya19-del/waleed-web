@@ -17,30 +17,50 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
+import { useSessionStore } from '@/stores/session-store';
 import { authApi } from '@/lib/api/endpoints';
 import { ApiError } from '@/lib/api/errors';
 import { apiErrorKey } from '@/lib/i18n/dictionaries/error-copy';
 
-const schema = z.object({
+const changePasswordSchema = z.object({
   currentPassword: z.string().min(1),
   newPassword: z.string().min(8),
 });
-type FormValues = z.infer<typeof schema>;
+
+const setPasswordSchema = z.object({
+  newPassword: z.string().min(8),
+});
 
 export function ChangePasswordPanel() {
   const t = useTranslations();
+  const user = useSessionStore((s) => s.user);
+  const setUser = useSessionStore((s) => s.setUser);
   const [submitting, setSubmitting] = useState(false);
-  const form = useForm<FormValues>({
-    resolver: zodResolver(schema),
+  const hasPassword = user?.hasPassword ?? true;
+
+  const form = useForm<{ currentPassword?: string; newPassword: string }>({
+    resolver: zodResolver(hasPassword ? changePasswordSchema : setPasswordSchema),
     defaultValues: { currentPassword: '', newPassword: '' },
   });
 
-  const onSubmit = async (v: FormValues) => {
+  const onSubmit = async (v: { currentPassword?: string; newPassword: string }) => {
     setSubmitting(true);
     try {
-      await authApi.changePassword(v);
-      toast.success(t('settings.password.updated'));
-      form.reset();
+      if (hasPassword) {
+        await authApi.changePassword({
+          currentPassword: v.currentPassword ?? '',
+          newPassword: v.newPassword,
+        });
+      } else {
+        await authApi.setPassword({
+          newPassword: v.newPassword,
+        });
+        if (user) {
+          setUser({ ...user, hasPassword: true });
+        }
+      }
+      toast.success(hasPassword ? t('settings.password.updated') : t('auth.passwordSetSuccess'));
+      form.reset({ currentPassword: '', newPassword: '' });
     } catch (e) {
       const msg = e instanceof ApiError && e.message ? e.message : (t(apiErrorKey(e)) as string);
       toast.error(msg);
@@ -52,19 +72,24 @@ export function ChangePasswordPanel() {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="max-w-md space-y-4">
-        <FormField
-          control={form.control}
-          name="currentPassword"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>{t('common.currentPassword')}</FormLabel>
-              <FormControl>
-                <Input type="password" autoComplete="current-password" {...field} />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+        {!hasPassword && (
+          <p className="text-sm text-muted-foreground">{t('auth.setPasswordSubtitle')}</p>
+        )}
+        {hasPassword && (
+          <FormField
+            control={form.control}
+            name="currentPassword"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>{t('common.currentPassword')}</FormLabel>
+                <FormControl>
+                  <Input type="password" autoComplete="current-password" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        )}
         <FormField
           control={form.control}
           name="newPassword"
@@ -80,7 +105,7 @@ export function ChangePasswordPanel() {
         />
         <Button type="submit" disabled={submitting}>
           {submitting && <Loader2 className="h-4 w-4 animate-spin" />}
-          {t('auth.changePasswordSubmit')}
+          {hasPassword ? t('auth.changePasswordSubmit') : t('auth.setPasswordTitle')}
         </Button>
       </form>
     </Form>

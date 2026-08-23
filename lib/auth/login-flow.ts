@@ -4,9 +4,13 @@ import { useSessionStore } from '@/stores/session-store';
 import type { AuthResponse } from '@/lib/api/types';
 
 export function commitAuthResponse(res: AuthResponse) {
-  tokenStorage.write(res.accessToken, res.refreshToken);
-  useSessionStore.getState().setUser(res.user);
-  useSessionStore.getState().markFresh();
+  if (res.accessToken && res.refreshToken) {
+    tokenStorage.write(res.accessToken, res.refreshToken);
+  }
+  if (res.user) {
+    useSessionStore.getState().setUser(res.user);
+    useSessionStore.getState().markFresh();
+  }
 }
 
 export async function loginAndCommit(email: string, password: string) {
@@ -15,15 +19,13 @@ export async function loginAndCommit(email: string, password: string) {
   return res;
 }
 
-export async function signupAndCommit(payload: {
+export async function signup(payload: {
   email: string;
   password: string;
   displayName: string;
   phone?: string;
 }) {
-  const res = await authApi.signup(payload);
-  commitAuthResponse(res);
-  return res;
+  return authApi.signup(payload);
 }
 
 export async function googleOAuthAndCommit(idToken: string) {

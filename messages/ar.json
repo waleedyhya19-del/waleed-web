@@ -98,6 +98,10 @@
     "changePasswordSubmit": "تغيير كلمة المرور",
     "setPasswordTitle": "تعيين كلمة مرور",
     "setPasswordSubtitle": "أضف كلمة مرور إلى حسابك لتتمكن من الدخول بالبريد.",
+    "passwordSetSuccess": "تم تعيين كلمة المرور بنجاح.",
+    "signupSuccessNote": "تم إنشاء الحساب بنجاح. أرسلنا رابط تأكيد إلى بريدك الإلكتروني {email} — يُرجى فتحه لتفعيل الحساب.",
+    "emailNotVerifiedAlert": "لم يتم تأكيد بريدك الإلكتروني بعد.",
+    "resendConfirmationLink": "إعادة إرسال رابط التأكيد",
     "createPasswordTitle": "إضافة بريد وكلمة مرور",
     "linkEmailTitle": "ربط بريد إلكتروني",
     "sessionExpiredTitle": "انتهت الجلسة",
@@ -252,7 +256,14 @@
       "policeReportTitle": "محضر الشرطة",
       "addPhoto": "إضافة صورة",
       "removePhoto": "حذف",
-      "empty": "لا صور في هذه الفئة"
+      "empty": "لا صور في هذه الفئة",
+      "minTwoRequired": "يجب إرفاق صورتين على الأقل لصندوق الهاتف.",
+      "maxSixAllowed": "الحد الأقصى هو 6 صور لصندوق الهاتف."
+    },
+    "reward": {
+      "rewardOffer": "المكافأة المالية",
+      "ifIntact": "إذا كانت البيانات سليمة",
+      "ifWiped": "إذا تم محو البيانات"
     },
     "notes": {
       "title": "ملاحظات الإشراف",
@@ -354,7 +365,11 @@
     },
     "profile": {
       "title": "الملف الشخصي",
-      "updated": "تم تحديث الملف"
+      "updated": "تم تحديث الملف",
+      "uploadPhoto": "رفع صورة",
+      "removePhoto": "حذف الصورة",
+      "photoUpdated": "تم تحديث صورة الملف الشخصي.",
+      "photoRemoved": "تم حذف صورة الملف الشخصي."
     },
     "password": {
       "title": "تغيير كلمة المرور",

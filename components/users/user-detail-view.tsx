@@ -11,7 +11,8 @@ import { useAsyncResource } from '@/lib/hooks/use-async-resource';
 import { usersApi } from '@/lib/api/endpoints';
 import { useSessionStore } from '@/stores/session-store';
 import { useRouter } from '@/lib/i18n/routing';
-import { roleKey } from '@/lib/i18n/enums';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { languageKey, roleKey } from '@/lib/i18n/enums';
 import type { Locale } from '@/lib/i18n/routing';
 import { fmtDateTime } from '@/lib/utils/format';
 import { ApiError } from '@/lib/api/errors';
@@ -56,17 +57,28 @@ export function UserDetailView({ id }: { id: string }) {
       >
         {state.data && (
           <div className="surface-card p-6">
-            <div className="flex flex-wrap items-center gap-2">
-              <h2 className="text-lg font-semibold">{state.data.displayName}</h2>
-              <Badge variant="outline">{t(roleKey(state.data.role))}</Badge>
-              {state.data.isEmailVerified && (
-                <Badge variant="success">{t('users.fields.isEmailVerified')}</Badge>
-              )}
+            <div className="flex flex-wrap items-center gap-4">
+              <Avatar className="h-14 w-14">
+                <AvatarImage src={state.data.profilePhotoUrl ?? undefined} alt={state.data.displayName} />
+                <AvatarFallback>{state.data.displayName.slice(0, 2).toUpperCase()}</AvatarFallback>
+              </Avatar>
+              <div>
+                <div className="flex flex-wrap items-center gap-2">
+                  <h2 className="text-lg font-semibold">{state.data.displayName}</h2>
+                  <Badge variant="outline">{t(roleKey(state.data.role))}</Badge>
+                  {state.data.isEmailVerified && (
+                    <Badge variant="success">{t('users.fields.isEmailVerified')}</Badge>
+                  )}
+                </div>
+              </div>
             </div>
             <dl className="mt-4 grid gap-3 sm:grid-cols-2 text-sm">
               <Field label={t('common.email')} value={state.data.email} />
               <Field label={t('common.phone')} value={state.data.phone} />
-              <Field label={t('common.language')} value={state.data.preferredLanguage} />
+              <Field
+                label={t('common.language')}
+                value={state.data.preferredLanguage ? t(languageKey(state.data.preferredLanguage)) : '—'}
+              />
               <Field label={t('users.fields.createdAt')} value={fmtDateTime(state.data.createdAt, locale)} />
               <Field label={t('users.fields.hasPassword')} value={state.data.hasPassword ? t('common.yes') : t('common.no')} />
             </dl>

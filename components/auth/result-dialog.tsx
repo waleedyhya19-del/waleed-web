@@ -17,10 +17,11 @@ interface ResultDialogProps {
   type: 'success' | 'error';
   title: string;
   message: string;
+  actionLabel?: string;
   onClose: () => void;
 }
 
-export function ResultDialog({ open, type, title, message, onClose }: ResultDialogProps) {
+export function ResultDialog({ open, type, title, message, actionLabel, onClose }: ResultDialogProps) {
   const t = useTranslations();
 
   return (
@@ -41,7 +42,7 @@ export function ResultDialog({ open, type, title, message, onClose }: ResultDial
             <DialogDescription>{message}</DialogDescription>
           </DialogHeader>
           <DialogFooter className="sm:justify-center">
-            <Button onClick={onClose}>{t('common.close')}</Button>
+            <Button onClick={onClose}>{actionLabel || t('common.close')}</Button>
           </DialogFooter>
         </div>
       </DialogContent>

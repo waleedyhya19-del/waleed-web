@@ -37,8 +37,9 @@ export interface CreateReportPayload {
   witnessLocation?: string;
   contactPhoneNumber?: string;
   paymentPhoneNumber?: string;
-  rewardIfDataIntact?: number;
-  rewardIfWiped?: number;
+  hasReward?: boolean;
+  rewardIfDataIntact?: number | null;
+  rewardIfWiped?: number | null;
   userId?: string;
 }
 

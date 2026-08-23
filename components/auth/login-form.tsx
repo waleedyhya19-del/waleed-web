@@ -36,6 +36,7 @@ export function LoginForm() {
   const router = useRouter();
   const search = useSearchParamsCompat();
   const [submitting, setSubmitting] = useState(false);
+  const [unverifiedEmail, setUnverifiedEmail] = useState<string | null>(null);
 
   const form = useForm<FormValues>({
     resolver: zodResolver(schema),
@@ -44,11 +45,15 @@ export function LoginForm() {
 
   const onSubmit = async (values: FormValues) => {
     setSubmitting(true);
+    setUnverifiedEmail(null);
     try {
       const res = await loginAndCommit(values.email, values.password);
       const redirect = search.get('redirect');
       router.replace(redirect || roleHomeHref(res.user.role));
     } catch (e) {
+      if (e instanceof ApiError && (e.code === 'EMAIL_NOT_VERIFIED' || e.statusCode === 403)) {
+        setUnverifiedEmail(values.email);
+      }
       const key = apiErrorKey(e);
       const msg =
         e instanceof ApiError && e.message ? e.message : (t(key) as string);
@@ -74,6 +79,17 @@ export function LoginForm() {
       {search.get('reason') === 'session-expired' && (
         <div className="mb-4 rounded-md border border-warning/40 bg-warning/10 p-3 text-sm text-warning-foreground">
           {t('auth.sessionExpiredDescription')}
+        </div>
+      )}
+      {unverifiedEmail && (
+        <div className="mb-4 rounded-md border border-warning/40 bg-warning/10 p-3 text-sm text-warning-foreground">
+          <p>{t('auth.emailNotVerifiedAlert')}</p>
+          <Link
+            href={`/resend-confirmation?email=${encodeURIComponent(unverifiedEmail)}`}
+            className="mt-1 inline-block font-medium text-accent hover:underline"
+          >
+            {t('auth.resendConfirmationLink')}
+          </Link>
         </div>
       )}
       <Form {...form}>

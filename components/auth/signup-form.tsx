@@ -19,9 +19,9 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
+import { ResultDialog } from './result-dialog';
 import { Link, useRouter } from '@/components/auth/utils';
-import { signupAndCommit } from '@/lib/auth/login-flow';
-import { roleHomeHref } from '@/lib/hooks/use-role-home';
+import { signup } from '@/lib/auth/login-flow';
 import { apiErrorKey } from '@/lib/i18n/dictionaries/error-copy';
 import { ApiError } from '@/lib/api/errors';
 
@@ -37,6 +37,8 @@ export function SignupForm() {
   const t = useTranslations();
   const router = useRouter();
   const [submitting, setSubmitting] = useState(false);
+  const [successDialogOpen, setSuccessDialogOpen] = useState(false);
+  const [registeredEmail, setRegisteredEmail] = useState('');
   const form = useForm<FormValues>({
     resolver: zodResolver(schema),
     defaultValues: { displayName: '', email: '', phone: '', password: '' },
@@ -45,8 +47,9 @@ export function SignupForm() {
   const onSubmit = async (v: FormValues) => {
     setSubmitting(true);
     try {
-      const res = await signupAndCommit(v);
-      router.replace(roleHomeHref(res.user.role));
+      await signup(v);
+      setRegisteredEmail(v.email);
+      setSuccessDialogOpen(true);
     } catch (e) {
       const key = apiErrorKey(e);
       const msg = e instanceof ApiError && e.message ? e.message : (t(key) as string);
@@ -130,6 +133,17 @@ export function SignupForm() {
         </form>
       </Form>
       <GoogleSignInButton text="signup_with" />
+      <ResultDialog
+        open={successDialogOpen}
+        type="success"
+        title={t('common.success')}
+        message={t('auth.signupSuccessNote', { email: registeredEmail })}
+        actionLabel={t('common.signIn')}
+        onClose={() => {
+          setSuccessDialogOpen(false);
+          router.replace('/login');
+        }}
+      />
     </AuthCard>
   );
 }
